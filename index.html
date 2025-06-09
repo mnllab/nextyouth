@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한국청년미래협회 - 청년의 삶에서 출발하는 진로와 창업</title>
+    <title>한국청년미래협회 - 청년의 삶에서 출발하는 나만의 길 찾기</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Noto Sans KR -->
@@ -27,10 +27,10 @@
                             DEFAULT: '#82C7D2', // Half Baked (Light Blue/Teal)
                             light: '#aee0e8',
                         },
-                        accent: '#f59e0b', // Amber (Kept for specific highlights if needed)
+                        accent: '#f59e0b', // Amber
                     },
                     backgroundImage: {
-                       'grid-pattern': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%23e5e7eb'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
+                       'grid-pattern': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%23f1f5f9'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
                        'hero-pattern': "url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
                     }
                 }
@@ -60,8 +60,7 @@
                 <li><a href="#support" class="text-slate-600 hover:text-secondary-DEFAULT font-medium transition-colors">후원</a></li>
             </ul>
             <div class="hidden lg:flex items-center space-x-4">
-                <a href="#apply" class="px-5 py-2 text-sm font-semibold text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">참여신청</a>
-                <a href="#consult" class="px-5 py-2 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors">상담신청</a>
+                <a href="#apply" class="px-5 py-2 text-sm font-semibold text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">참여/문의</a>
             </div>
             <button id="menu-toggle" class="lg:hidden text-primary z-50">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -79,8 +78,7 @@
             <li><a href="#support" class="text-primary hover:text-secondary-DEFAULT text-2xl font-bold transition-colors">후원</a></li>
         </ul>
         <div class="mt-12 flex flex-col items-center space-y-4">
-             <a href="#apply" class="w-48 text-center px-5 py-3 font-semibold text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">참여신청</a>
-             <a href="#consult" class="w-48 text-center px-5 py-3 font-semibold text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors">상담신청</a>
+             <a href="#apply" class="w-48 text-center px-5 py-3 font-semibold text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300">참여/문의</a>
         </div>
     </div>
 
@@ -91,14 +89,14 @@
             <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center opacity-10"></div>
             <div class="relative container mx-auto px-6 text-center">
                 <h1 class="text-4xl md:text-6xl font-black leading-tight mb-4">청년의 미래를 함께 설계합니다</h1>
-                <p class="text-lg md:text-2xl font-medium text-slate-300 mb-6">AI 시대, 삶에서 출발해 기술로 연결되는 진로와 창업</p>
+                <p class="text-lg md:text-2xl font-medium text-slate-300 mb-6">AI 시대, 삶에서 출발해 기술로 연결되는 나만의 길</p>
                 <p class="max-w-2xl mx-auto text-slate-400 mb-10">
-                    우리는 단순히 취업이나 창업을 권하지 않습니다.<br>
-                    청년이 주체적으로 미래를 상상하고 설계하는 힘을 함께 기릅니다.
+                    취·창업은 여러 선택지 중 하나일 뿐입니다.<br>
+                    청년이 주체적으로 미래를 상상하고 자신만의 길을 설계하는 힘을 함께 기릅니다.
                 </p>
                 <div class="flex justify-center items-center gap-4 flex-wrap">
                     <a href="#program" class="bg-secondary text-primary font-bold py-3 px-8 rounded-full text-lg hover:bg-secondary-light transform hover:scale-105 transition-all duration-300 shadow-lg">🎯 프로그램 알아보기</a>
-                    <a href="#apply" class="border-2 border-slate-400 text-slate-300 font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-300 hover:text-primary transform hover:scale-105 transition-all duration-300">📝 지금 신청하기</a>
+                    <a href="#apply" class="border-2 border-slate-400 text-slate-300 font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-300 hover:text-primary transform hover:scale-105 transition-all duration-300">📝 참여 및 문의하기</a>
                 </div>
             </div>
         </section>
@@ -109,7 +107,7 @@
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">왜 우리는 청년의 삶을 먼저 묻는가?</h2>
                     <p class="max-w-3xl mx-auto text-slate-600 text-lg">
-                        기존 창업 교육은 도구 중심, 성공사례 모방에 머물렀습니다.<br>
+                        정해진 길을 따르기보다, 자신만의 길을 만드는 것이 중요합니다.<br>
                         우리는 개인의 가치 탐색에서 출발해, 기술과 융합하여 의미있는 실행으로 연결합니다.
                     </p>
                 </div>
@@ -136,15 +134,15 @@
                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                         </div>
                         <h3 class="text-xl font-bold text-primary mb-3">AI 실무 역량 강화</h3>
-                        <p class="text-slate-600">취업과 창업에 필수적인 AI 활용 능력! ChatGPT, Claude, Gemini를 활용해 업무 효율을 극대화합니다.</p>
+                        <p class="text-slate-600">ChatGPT, Claude, Gemini 등 생성형 AI를 활용하여, 어떤 커리어에서도 앞서나가는 경쟁력을 갖춥니다.</p>
                     </div>
                      <!-- Value Card 4 (New) -->
                     <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
                         <div class="mx-auto mb-4 w-16 h-16 bg-secondary/20 text-secondary-DEFAULT rounded-full flex items-center justify-center">
                           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 4.5c-1.6 2.7-3.2 5.4-4.8 8.1l-2.4 4.2-1.8-1.8 4.2-2.4c2.7-1.6 5.4-3.2 8.1-4.8"/><path d="M12.5 5.5 18 2l-3.5 5.5"/><path d="M6 18.5 2 22l5.5-3.5"/></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-3">코딩 없는 AI/노코드 창업</h3>
-                        <p class="text-slate-600">코딩을 몰라도 괜찮습니다. Bubble 같은 노코드 툴로 아이디어를 빠르게 실제 서비스로 구현합니다.</p>
+                        <h3 class="text-xl font-bold text-primary mb-3">디지털로 아이디어 실현</h3>
+                        <p class="text-slate-600">코딩을 몰라도 괜찮습니다. 노코드 툴을 이용해 나만의 아이디어를 빠르게 서비스나 포트폴리오로 만듭니다.</p>
                     </div>
                     <!-- Value Card 5 -->
                     <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
@@ -152,15 +150,15 @@
                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         </div>
                         <h3 class="text-xl font-bold text-primary mb-3">세대 간 소통 기반의 성장</h3>
-                        <p class="text-slate-600">선배 창업가와 동료들의 진솔한 이야기를 나누며 새로운 관점을 만듭니다.</p>
+                        <p class="text-slate-600">선배 전문가와 동료들의 진솔한 이야기를 나누며 함께 성장하는 커뮤니티를 지향합니다.</p>
                     </div>
                     <!-- Value Card 6 -->
                     <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
                         <div class="mx-auto mb-4 w-16 h-16 bg-secondary/20 text-secondary-DEFAULT rounded-full flex items-center justify-center">
                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-3">의미 중심의 창업 정의</h3>
-                        <p class="text-slate-600">단순한 수익보다 사회적 임팩트를 중시하며 지속가능한 가치를 추구합니다.</p>
+                        <h3 class="text-xl font-bold text-primary mb-3">지속가능한 가치 추구</h3>
+                        <p class="text-slate-600">단순한 성공보다 사회에 긍정적인 영향을 미치는 의미있는 활동을 지향합니다.</p>
                     </div>
                 </div>
             </div>
@@ -170,12 +168,12 @@
         <section id="program" class="py-20 bg-slate-100 bg-grid-pattern">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">삶의 언어로 창업을 말하다</h2>
-                    <p class="max-w-3xl mx-auto text-slate-600 text-lg">당신의 삶에서 창업의 언어를 찾아가는 4주간의 여정</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">삶의 언어로 미래를 그리다</h2>
+                    <p class="max-w-3xl mx-auto text-slate-600 text-lg">당신의 삶에서 나만의 길을 찾아가는 4주간의 여정</p>
                 </div>
                 
                 <div class="bg-white text-primary p-8 md:p-12 rounded-3xl shadow-xl mb-12 border-t-4 border-secondary-DEFAULT">
-                    <h3 class="text-3xl font-bold mb-6 text-center">🎪 청년 주도형 진로탐색 프로그램 (창업편)</h3>
+                    <h3 class="text-3xl font-bold mb-6 text-center">🎪 청년 주도형 미래설계 프로그램</h3>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
                         <div class="bg-slate-100 p-4 rounded-xl text-center"><strong class="block text-lg text-primary">형식</strong><span class="text-slate-600">토크콘서트 + 워크숍</span></div>
                         <div class="bg-slate-100 p-4 rounded-xl text-center"><strong class="block text-lg text-primary">기간</strong><span class="text-slate-600">4주 (주 1회, 3시간)</span></div>
@@ -189,20 +187,20 @@
                      <div class="space-y-6">
                         <!-- Weeks -->
                         <div class="md:flex gap-6 p-6 bg-slate-50 rounded-xl">
-                            <div class="flex-shrink-0 md:w-1/4 mb-4 md:mb-0"><p class="text-xl font-semibold text-secondary-DEFAULT">🗓️ 1주차: 세대가 만나는 창업 이야기</p></div>
-                            <div class="md:w-3/4 grid sm:grid-cols-2 gap-4"><div class="bg-white p-4 rounded-lg border"><strong>토크콘서트:</strong> 다양한 세대 창업가의 진솔한 경험담</div><div class="bg-white p-4 rounded-lg border"><strong>워크숍:</strong> 나의 창업 동기와 가치관 탐색</div></div>
+                            <div class="flex-shrink-0 md:w-1/4 mb-4 md:mb-0"><p class="text-xl font-semibold text-secondary-DEFAULT">🗓️ 1주차: 세대가 만나는 커리어 이야기</p></div>
+                            <div class="md:w-3/4 grid sm:grid-cols-2 gap-4"><div class="bg-white p-4 rounded-lg border"><strong>토크콘서트:</strong> 다양한 분야 전문가들의 진솔한 경험담</div><div class="bg-white p-4 rounded-lg border"><strong>워크숍:</strong> 나의 강점과 가치관 탐색</div></div>
                         </div>
                         <div class="md:flex gap-6 p-6 bg-slate-50 rounded-xl">
-                            <div class="flex-shrink-0 md:w-1/4 mb-4 md:mb-0"><p class="text-xl font-semibold text-secondary-DEFAULT">🗓️ 2주차: AI 시대의 진로·창업</p></div>
-                            <div class="md:w-3/4 grid sm:grid-cols-2 gap-4"><div class="bg-white p-4 rounded-lg border"><strong>실습 강의:</strong> ChatGPT, 노코드 툴 활용법</div><div class="bg-white p-4 rounded-lg border"><strong>워크숍:</strong> 기술 도구로 아이디어 구현하기</div></div>
+                            <div class="flex-shrink-0 md:w-1/4 mb-4 md:mb-0"><p class="text-xl font-semibold text-secondary-DEFAULT">🗓️ 2주차: AI 시대의 미래 역량</p></div>
+                            <div class="md:w-3/4 grid sm:grid-cols-2 gap-4"><div class="bg-white p-4 rounded-lg border"><strong>실습 강의:</strong> 생성형 AI 및 노코드 툴 활용법</div><div class="bg-white p-4 rounded-lg border"><strong>워크숍:</strong> 디지털 도구로 아이디어 구현하기</div></div>
                         </div>
                         <div class="md:flex gap-6 p-6 bg-slate-50 rounded-xl">
-                            <div class="flex-shrink-0 md:w-1/4 mb-4 md:mb-0"><p class="text-xl font-semibold text-secondary-DEFAULT">🗓️ 3주차: 나의 언어로 창업 찾기</p></div>
-                            <div class="md:w-3/4 grid sm:grid-cols-2 gap-4"><div class="bg-white p-4 rounded-lg border"><strong>워크숍:</strong> 린 캔버스 작성과 맞춤 피드백</div><div class="bg-white p-4 rounded-lg border"><strong>멘토링:</strong> 1:1 개인 멘토링 세션 진행</div></div>
+                            <div class="flex-shrink-0 md:w-1/4 mb-4 md:mb-0"><p class="text-xl font-semibold text-secondary-DEFAULT">🗓️ 3주차: 나의 언어로 길 찾기</p></div>
+                            <div class="md:w-3/4 grid sm:grid-cols-2 gap-4"><div class="bg-white p-4 rounded-lg border"><strong>워크숍:</strong> 개인별 커리어 로드맵 설계 및 피드백</div><div class="bg-white p-4 rounded-lg border"><strong>멘토링:</strong> 1:1 심층 멘토링 세션</div></div>
                         </div>
                         <div class="md:flex gap-6 p-6 bg-slate-50 rounded-xl">
                             <div class="flex-shrink-0 md:w-1/4 mb-4 md:mb-0"><p class="text-xl font-semibold text-secondary-DEFAULT">🗓️ 4주차: 연결과 지속의 시간</p></div>
-                            <div class="md:w-3/4 grid sm:grid-cols-2 gap-4"><div class="bg-white p-4 rounded-lg border"><strong>발표회:</strong> 개인 프로젝트 피칭 및 피드백</div><div class="bg-white p-4 rounded-lg border"><strong>네트워킹:</strong> 후속 활동 및 팀 구성</div></div>
+                            <div class="md:w-3/4 grid sm:grid-cols-2 gap-4"><div class="bg-white p-4 rounded-lg border"><strong>발표회:</strong> 개인 프로젝트 및 비전 공유</div><div class="bg-white p-4 rounded-lg border"><strong>네트워킹:</strong> 후속 활동 및 커뮤니티 연결</div></div>
                         </div>
                      </div>
                 </div>
@@ -214,31 +212,31 @@
              <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">추가 교육 프로그램</h2>
-                    <p class="max-w-3xl mx-auto text-slate-600 text-lg">메인 프로그램과 함께 진행되는 다양한 교육 과정들</p>
+                    <p class="max-w-3xl mx-auto text-slate-600 text-lg">메인 프로그램과 함께 진행되는 다양한 심화 교육 과정들</p>
                 </div>
                 <div class="grid lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-accent">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-secondary">
                          <h3 class="text-2xl font-bold text-primary mb-4">📚 청년미래교육</h3>
                          <ul class="space-y-3 text-slate-600">
-                            <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span>나를 이해하는 글쓰기 (월 2회)</li>
-                            <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span>디지털 리터러시 워크숍 (월 1회)</li>
-                            <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span>AI 시대의 일과 삶 세미나 (분기별)</li>
+                            <li class="flex items-start"><span class="text-secondary mr-3 mt-1">✓</span>나를 이해하는 글쓰기 (월 2회)</li>
+                            <li class="flex items-start"><span class="text-secondary mr-3 mt-1">✓</span>디지털 리터러시 워크숍 (월 1회)</li>
+                            <li class="flex items-start"><span class="text-secondary mr-3 mt-1">✓</span>AI 시대의 일과 삶 세미나 (분기별)</li>
                          </ul>
                     </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-accent">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-secondary">
                          <h3 class="text-2xl font-bold text-primary mb-4">🌱 후속 프로그램</h3>
                          <ul class="space-y-3 text-slate-600">
-                             <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span>심화 멘토링 (3개월 과정)</li>
-                             <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span>창업 프로젝트 팀 지원</li>
-                             <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span>정기 동문 네트워킹 (월 1회)</li>
+                             <li class="flex items-start"><span class="text-secondary mr-3 mt-1">✓</span>심화 멘토링 (3개월 과정)</li>
+                             <li class="flex items-start"><span class="text-secondary mr-3 mt-1">✓</span>프로젝트 팀 지원</li>
+                             <li class="flex items-start"><span class="text-secondary mr-3 mt-1">✓</span>정기 동문 네트워킹 (월 1회)</li>
                          </ul>
                     </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-accent">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-secondary">
                         <h3 class="text-2xl font-bold text-primary mb-4">🛠️ 무료 리소스 센터</h3>
                          <ul class="space-y-3 text-slate-600">
-                             <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span>AI/노코드 툴 가이드북</li>
-                             <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span>창업 실무 템플릿 모음</li>
-                             <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span>청년 창업가 인터뷰 시리즈</li>
+                             <li class="flex items-start"><span class="text-secondary mr-3 mt-1">✓</span>AI/노코드 툴 가이드북</li>
+                             <li class="flex items-start"><span class="text-secondary mr-3 mt-1">✓</span>커리어 설계 템플릿 모음</li>
+                             <li class="flex items-start"><span class="text-secondary mr-3 mt-1">✓</span>다양한 분야 전문가 인터뷰 시리즈</li>
                          </ul>
                     </div>
                 </div>
@@ -296,16 +294,16 @@
                     <div class="bg-primary p-8 rounded-xl hover:bg-primary-dark transition-colors">
                         <h3 class="text-2xl font-bold mb-3">💝 후원하기</h3>
                         <p class="text-slate-400 mb-6">청년들의 교육과 성장을 위한 후원</p>
-                        <a href="#donate" class="bg-secondary text-primary font-semibold py-2 px-6 rounded-lg hover:bg-secondary-light transition-all">후원 안내</a>
+                        <a href="#apply" class="bg-secondary text-primary font-semibold py-2 px-6 rounded-lg hover:bg-secondary-light transition-all">후원 안내</a>
                     </div>
                     <div class="bg-primary p-8 rounded-xl hover:bg-primary-dark transition-colors">
                         <h3 class="text-2xl font-bold mb-3">🤝 파트너십</h3>
                         <p class="text-slate-400 mb-6">기업·기관과의 협력 프로그램</p>
-                        <a href="#" class="bg-white/10 text-white font-semibold py-2 px-6 rounded-lg hover:bg-white/20 transition-colors">카카오톡 채널로 문의</a>
+                        <a href="#apply" class="bg-white/10 text-white font-semibold py-2 px-6 rounded-lg hover:bg-white/20 transition-colors">문의하기</a>
                     </div>
                     <div class="bg-primary p-8 rounded-xl hover:bg-primary-dark transition-colors">
                         <h3 class="text-2xl font-bold mb-3">📧 뉴스레터</h3>
-                        <p class="text-slate-400 mb-6">협회 소식과 청년 창업 트렌드</p>
+                        <p class="text-slate-400 mb-6">협회 소식과 청년 커리어 트렌드</p>
                         <a href="https://opcl-letter.stibee.com/subscribe/" target="_blank" rel="noopener noreferrer" class="bg-secondary text-primary font-semibold py-2 px-6 rounded-lg hover:bg-secondary-light transition-all">구독하기</a>
                     </div>
                 </div>
@@ -315,31 +313,46 @@
         <!-- Apply & Consult Section -->
         <section id="apply" class="py-20 bg-grid-pattern">
             <div class="container mx-auto px-6">
-                <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto">
-                    <div class="text-center">
-                        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">새로운 여정을 시작하세요</h2>
-                        <p class="max-w-2xl mx-auto text-slate-600 text-lg mb-10">
-                            당신의 잠재력을 깨울 준비가 되셨나요? 지금 바로 신청하여 변화의 첫걸음을 내딛으세요.
-                        </p>
-                    </div>
-                    
-                    <div id="consult" class="grid md:grid-cols-2 gap-12 items-center">
-                        <!-- Apply Form -->
-                        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center">
-                             <h3 class="text-2xl font-bold text-primary mb-4">📝 프로그램 참여신청</h3>
-                             <p class="text-slate-600 mb-6">
-                                 협회 프로그램 참여 신청은 외부 플랫폼<br class="hidden sm:block">'이벤터스(Eventus)'에서 진행됩니다.
-                             </p>
-                             <a href="#" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-dark transition-colors">
-                                 이벤터스에서 신청하기
-                             </a>
+                 <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <!-- Form Section -->
+                        <div>
+                             <h3 class="text-2xl font-bold text-primary mb-2">참여 및 문의하기</h3>
+                             <p class="text-slate-500 mb-6">프로그램 참여, 파트너십, 후원 등 궁금한 점을 남겨주세요.</p>
+                             <form id="contact-form" class="space-y-4">
+                                 <div>
+                                     <label for="name" class="block text-sm font-medium text-slate-700">이름</label>
+                                     <input type="text" name="name" id="name" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-secondary focus:border-secondary">
+                                 </div>
+                                 <div>
+                                     <label for="email" class="block text-sm font-medium text-slate-700">이메일</label>
+                                     <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-secondary focus:border-secondary">
+                                 </div>
+                                 <div>
+                                     <label for="inquiry-type" class="block text-sm font-medium text-slate-700">문의 유형</label>
+                                     <select id="inquiry-type" name="inquiryType" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm rounded-md">
+                                         <option>프로그램 참여</option>
+                                         <option>파트너십 제휴</option>
+                                         <option>후원 문의</option>
+                                         <option>기타</option>
+                                     </select>
+                                 </div>
+                                 <div>
+                                     <label for="message" class="block text-sm font-medium text-slate-700">내용</label>
+                                     <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-secondary focus:border-secondary"></textarea>
+                                 </div>
+                                 <button type="submit" class="w-full bg-primary text-white font-bold py-3 px-4 rounded-lg hover:bg-primary-dark transition-colors">
+                                     문의하기
+                                 </button>
+                             </form>
+                             <div id="form-status" class="mt-4 text-center"></div>
                         </div>
                         
-                        <!-- Consult Info -->
+                        <!-- Kakao Channel Section -->
                         <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center">
-                            <h3 class="text-2xl font-bold text-primary mb-4">💬 1:1 상담 및 제휴문의</h3>
+                            <h3 class="text-2xl font-bold text-primary mb-4">빠른 상담이 필요하신가요?</h3>
                             <p class="text-slate-600 mb-6">
-                                창업, 진로, 파트너십 등 궁금한 점을<br class="hidden sm:block">아래 카카오톡 채널에서 편하게 문의해 주세요.
+                                카카오톡 채널을 통해<br class="hidden sm:block">1:1로 편하게 문의하실 수 있습니다.
                             </p>
                             <a href="#" class="inline-block bg-yellow-400 text-primary-dark font-bold py-3 px-8 rounded-lg hover:bg-yellow-500 transition-colors">
                                 카카오톡 채널로 문의
@@ -359,8 +372,8 @@
                 <div>
                     <h4 class="font-bold text-white text-lg mb-4">프로그램</h4>
                     <ul class="space-y-2">
-                        <li><a href="#program" class="hover:text-white transition-colors">진로탐색 프로그램</a></li>
-                        <li><a href="#education" class="hover:text-white transition-colors">청년미래교육</a></li>
+                        <li><a href="#program" class="hover:text-white transition-colors">미래설계 프로그램</a></li>
+                        <li><a href="#education" class="hover:text-white transition-colors">추가 교육 프로그램</a></li>
                     </ul>
                 </div>
                 <div>
@@ -374,8 +387,8 @@
                  <div>
                     <h4 class="font-bold text-white text-lg mb-4">참여하기</h4>
                     <ul class="space-y-2">
-                        <li><a href="#apply" class="hover:text-white transition-colors">프로그램 신청</a></li>
-                        <li><a href="#donate" class="hover:text-white transition-colors">후원하기</a></li>
+                        <li><a href="#apply" class="hover:text-white transition-colors">참여 및 문의</a></li>
+                        <li><a href="#support" class="hover:text-white transition-colors">후원하기</a></li>
                     </ul>
                 </div>
                  <div>
@@ -436,6 +449,65 @@
                         mobileMenu.classList.add('hidden');
                         menuToggle.innerHTML = openIcon;
                     });
+                });
+            }
+
+            // Google Sheet Form Submission
+            const form = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(form);
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = '전송 중...';
+                    formStatus.textContent = '';
+                    
+                    // =================================================================================
+                    // ▼ IMPORTANT ▼
+                    // 1. Google Sheets에서 새 스프레드시트를 만듭니다.
+                    // 2. '확장 프로그램' > 'Apps Script'로 이동합니다.
+                    // 3. 아래의 Apps Script 코드를 복사하여 붙여넣고 저장합니다.
+                    // 4. '배포' > '새 배포'를 선택하고, 유형을 '웹 앱'으로 설정합니다.
+                    // 5. '액세스 권한이 있는 사용자'를 '모든 사용자'로 설정하고 '배포'를 클릭합니다.
+                    // 6. 표시되는 '웹 앱 URL'을 복사하여 아래 'scriptURL'의 'YOUR_DEPLOYMENT_ID' 부분에 붙여넣습니다.
+                    // =================================================================================
+                    // 
+                    // --- Google Apps Script Code ---
+                    // function doPost(e) {
+                    //   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+                    //   var newRow = sheet.getLastRow() + 1;
+                    //   var rowData = [];
+                    //   rowData.push(new Date()); // Timestamp
+                    //   rowData.push(e.parameter.name);
+                    //   rowData.push(e.parameter.email);
+                    //   rowData.push(e.parameter.inquiryType);
+                    //   rowData.push(e.parameter.message);
+                    //   sheet.getRange(newRow, 1, 1, rowData.length).setValues([rowData]);
+                    //   return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+                    // }
+                    // -----------------------------
+                    
+                    const scriptURL = 'https://script.google.com/macros/s/AKfycbzpx_oT8BOzc5tqK5lljTYpOM6l101Bw4aOKP5TJcSyWSpd2mUxtc7SKXcXfF2Jp43Qnw/exec'; // <-- 여기에 웹 앱 URL을 붙여넣으세요.
+
+                    fetch(scriptURL, { method: 'POST', body: formData})
+                        .then(response => {
+                            formStatus.textContent = '메시지가 성공적으로 전송되었습니다!';
+                            formStatus.className = 'mt-4 text-center text-green-600';
+                            form.reset();
+                        })
+                        .catch(error => {
+                            formStatus.textContent = '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+                            formStatus.className = 'mt-4 text-center text-red-600';
+                            console.error('Error!', error.message);
+                        })
+                        .finally(() => {
+                           submitButton.disabled = false;
+                           submitButton.textContent = '문의하기';
+                        });
                 });
             }
         });

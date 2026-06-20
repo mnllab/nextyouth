@@ -33,6 +33,7 @@
                     animation: {
                         'blob': 'blob 7s infinite',
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         blob: {
@@ -51,7 +52,6 @@
         }
     </script>
     <style>
-        /* Custom Styles & Utilities */
         body { font-family: 'Noto Sans KR', sans-serif; }
         :lang(en) body { font-family: 'Inter', sans-serif; }
         
@@ -107,6 +107,7 @@
                 <li><a href="#program" class="text-slate-600 hover:text-secondary-dark font-medium transition-colors i18n" data-ko="프로그램" data-en="Programs">프로그램</a></li>
                 <li><a href="#education" class="text-slate-600 hover:text-secondary-dark font-medium transition-colors i18n" data-ko="교육" data-en="Education">교육</a></li>
                 <li><a href="#about" class="text-slate-600 hover:text-secondary-dark font-medium transition-colors i18n" data-ko="협회소개" data-en="About Us">협회소개</a></li>
+                <li><a href="#blog-activity" class="text-slate-600 hover:text-[#03c75a] font-medium transition-colors flex items-center gap-1"><span class="i18n" data-ko="활동/블로그" data-en="Blog & News">활동/블로그</span></a></li>
                 <li><a href="#partners" class="text-slate-600 hover:text-secondary-dark font-medium transition-colors i18n" data-ko="파트너" data-en="Partners">파트너</a></li>
             </ul>
 
@@ -131,6 +132,7 @@
             <li><a href="#program" class="text-primary hover:text-secondary text-2xl font-bold transition-colors mobile-link i18n" data-ko="프로그램" data-en="Programs">프로그램</a></li>
             <li><a href="#education" class="text-primary hover:text-secondary text-2xl font-bold transition-colors mobile-link i18n" data-ko="교육" data-en="Education">교육</a></li>
             <li><a href="#about" class="text-primary hover:text-secondary text-2xl font-bold transition-colors mobile-link i18n" data-ko="협회소개" data-en="About Us">협회소개</a></li>
+            <li><a href="#blog-activity" class="text-primary hover:text-[#03c75a] text-2xl font-bold transition-colors mobile-link i18n" data-ko="활동/블로그" data-en="Blog & News">활동/블로그</a></li>
             <li><a href="#partners" class="text-primary hover:text-secondary text-2xl font-bold transition-colors mobile-link i18n" data-ko="파트너" data-en="Partners">파트너</a></li>
         </ul>
         <div class="mt-10 flex flex-col items-center space-y-6">
@@ -151,27 +153,91 @@
             <div class="absolute -bottom-8 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-4000"></div>
             <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiAvPgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjZTFlMWUxIiAvPgo8L3N2Zz4=')] opacity-50"></div>
 
-            <div class="relative container mx-auto px-6 text-center z-10">
-                <div class="inline-block mb-6 px-4 py-1.5 rounded-full bg-white shadow-sm border border-slate-100 animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <span class="bg-gradient-to-r from-secondary-dark to-accent bg-clip-text text-transparent font-bold text-sm tracking-wide i18n" data-ko="✨ 당신만의 길을 개척하세요" data-en="✨ Forge Your Own Path">✨ 당신만의 길을 개척하세요</span>
+            <div class="relative container mx-auto px-6 z-10 flex flex-col lg:flex-row items-center gap-12">
+                <!-- Text Content -->
+                <div class="flex-1 text-center lg:text-left mt-10 lg:mt-0">
+                    <div class="inline-block mb-6 px-4 py-1.5 rounded-full bg-white shadow-sm border border-slate-100 animate-fade-in-up" style="animation-delay: 0.1s;">
+                        <span class="bg-gradient-to-r from-secondary-dark to-accent bg-clip-text text-transparent font-bold text-sm tracking-wide i18n" data-ko="✨ 당신만의 길을 개척하세요" data-en="✨ Forge Your Own Path">✨ 당신만의 길을 개척하세요</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight text-primary animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <span class="block i18n" data-ko="청년의 미래를" data-en="Designing the Future">청년의 미래를</span>
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-secondary-dark via-accent to-purple-600 i18n" data-ko="함께 설계합니다" data-en="of Youth Together">함께 설계합니다</span>
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl font-medium text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0 animate-fade-in-up" style="animation-delay: 0.3s;">
+                        <span class="i18n" data-ko="AI 시대, 삶에서 출발해 기술로 연결되는 나만의 길" data-en="Your own path in the AI era, starting from life and connecting with technology.">AI 시대, 삶에서 출발해 기술로 연결되는 나만의 길</span>
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 mt-10 animate-fade-in-up" style="animation-delay: 0.4s;">
+                        <a href="#program" class="w-full sm:w-auto bg-primary text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-slate-800 hover:shadow-xl hover:shadow-primary/20 transform hover:-translate-y-1 transition-all duration-300 text-center">
+                            <span class="i18n" data-ko="프로그램 알아보기" data-en="Explore Programs">프로그램 알아보기</span>
+                        </a>
+                        <a href="https://blog.naver.com/nextyouthkorea" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-700 font-semibold py-4 px-8 rounded-full text-lg hover:border-[#03c75a] hover:text-[#03c75a] hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-center flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"/></svg>
+                            <span class="i18n" data-ko="블로그 구경하기" data-en="Visit Our Blog">블로그 구경하기</span>
+                        </a>
+                    </div>
                 </div>
-                
-                <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight text-primary animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <span class="block i18n" data-ko="청년의 미래를" data-en="Designing the Future">청년의 미래를</span>
-                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-secondary-dark via-accent to-purple-600 i18n" data-ko="함께 설계합니다" data-en="of Youth Together">함께 설계합니다</span>
-                </h1>
-                
-                <p class="text-xl md:text-2xl font-medium text-slate-600 mb-8 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.3s;">
-                    <span class="i18n" data-ko="AI 시대, 삶에서 출발해 기술로 연결되는 나만의 길" data-en="Your own path in the AI era, starting from life and connecting with technology.">AI 시대, 삶에서 출발해 기술로 연결되는 나만의 길</span>
-                </p>
-                
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10 animate-fade-in-up" style="animation-delay: 0.4s;">
-                    <a href="#program" class="w-full sm:w-auto bg-primary text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-slate-800 hover:shadow-xl hover:shadow-primary/20 transform hover:-translate-y-1 transition-all duration-300">
-                        <span class="i18n" data-ko="프로그램 알아보기" data-en="Explore Programs">프로그램 알아보기</span>
-                    </a>
-                    <a href="#contact" class="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-700 font-semibold py-4 px-8 rounded-full text-lg hover:border-secondary hover:text-secondary-dark hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
-                        <span class="i18n" data-ko="문의하기" data-en="Contact Us">문의하기</span>
-                    </a>
+
+                <!-- Abstract Vector Graphic Content (Replaced Photo) -->
+                <div class="flex-1 relative hidden md:block animate-fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="relative w-full max-w-lg mx-auto h-[450px] lg:h-[550px]">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-slate-100 to-white rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden flex items-center justify-center">
+                            
+                            <!-- Background Grid -->
+                            <svg class="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <pattern id="hero-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                                        <circle cx="2" cy="2" r="1" fill="#cbd5e1"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="100%" height="100%" fill="url(#hero-grid)" />
+                            </svg>
+
+                            <!-- Floating Abstract Shapes (Glassmorphism + Gradients) -->
+                            <div class="absolute top-[15%] left-[10%] w-24 h-24 bg-gradient-to-br from-secondary to-blue-400 rounded-full opacity-80 mix-blend-multiply blur-[2px] animate-blob shadow-xl shadow-secondary/30"></div>
+                            <div class="absolute top-[20%] right-[15%] w-32 h-32 bg-gradient-to-br from-accent to-purple-500 rounded-3xl rotate-12 opacity-80 mix-blend-multiply blur-[2px] animate-blob animation-delay-2000 shadow-xl shadow-accent/30"></div>
+                            <div class="absolute bottom-[15%] left-[25%] w-40 h-40 bg-gradient-to-br from-teal-300 to-emerald-400 rounded-[2rem] -rotate-12 opacity-80 mix-blend-multiply blur-[2px] animate-blob animation-delay-4000 shadow-xl shadow-teal-400/30"></div>
+
+                            <!-- Decorative SVG Connection Lines -->
+                            <svg class="absolute inset-0 w-full h-full z-0" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M -50 400 C 150 400, 200 150, 400 250 C 600 350, 700 100, 900 150" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-dasharray="10 10" />
+                                <circle cx="400" cy="250" r="6" fill="#818cf8" />
+                                <circle cx="210" cy="285" r="4" fill="#38bdf8" />
+                            </svg>
+
+                            <!-- Central Focus Area -->
+                            <div class="relative z-10 w-56 h-56 bg-white/60 backdrop-blur-xl border border-white/80 rounded-[2.5rem] shadow-2xl flex flex-col items-center justify-center p-6 group hover:scale-105 transition-transform duration-500">
+                                <div class="w-16 h-16 bg-gradient-to-tr from-primary to-slate-700 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:-translate-y-2 transition-transform duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                </div>
+                                <div class="h-2 w-16 bg-slate-200 rounded-full mb-2"></div>
+                                <div class="h-2 w-10 bg-slate-200 rounded-full mb-6"></div>
+                                
+                                <div class="flex gap-2">
+                                    <div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-xs border border-secondary/30">💻</div>
+                                    <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-xs -ml-3 border-2 border-white shadow-sm">💡</div>
+                                    <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-xs -ml-3 border-2 border-white shadow-sm">📈</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating Info Card 1 -->
+                            <div class="absolute bottom-10 left-4 glass-card p-4 rounded-2xl flex items-center gap-4 z-20 hover:-translate-y-1 transition-transform">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-lg">🚀</div>
+                                <div>
+                                    <p class="text-[10px] text-slate-500 font-bold i18n" data-ko="NEXT YOUTH" data-en="NEXT YOUTH">NEXT YOUTH</p>
+                                    <p class="text-xs font-bold text-primary i18n" data-ko="미래 설계" data-en="Future Design">미래 설계</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating Info Card 2 -->
+                            <div class="absolute top-10 right-4 glass-card p-3 rounded-2xl flex items-center gap-3 z-20 hover:-translate-y-1 transition-transform">
+                                <div class="w-8 h-8 bg-gradient-to-br from-secondary to-blue-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">✨</div>
+                                <p class="text-xs font-bold text-primary pr-2 i18n" data-ko="나만의 길" data-en="My Path">나만의 길</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -252,27 +318,62 @@
                     <p class="max-w-2xl mx-auto text-slate-500 text-lg i18n" data-ko="당신의 삶에서 나만의 길을 찾아가는 4주간의 특별한 여정" data-en="A special 4-week journey to find your own path in life.">당신의 삶에서 나만의 길을 찾아가는 4주간의 특별한 여정</p>
                 </div>
                 
-                <!-- Info Banner -->
-                <div class="bg-primary text-white p-8 md:p-12 rounded-3xl shadow-2xl mb-16 reveal relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-secondary to-purple-500 opacity-20 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2"></div>
-                    
-                    <h3 class="text-2xl md:text-3xl font-bold mb-10 text-center i18n" data-ko="🎯 청년 주도형 미래설계 프로그램" data-en="🎯 Youth-Led Future Design Program">🎯 청년 주도형 미래설계 프로그램</h3>
-                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl text-center hover:bg-white/20 transition-colors">
-                            <strong class="block text-sm text-secondary-light mb-2 i18n" data-ko="형식" data-en="Format">형식</strong>
-                            <span class="font-medium text-lg i18n" data-ko="토크콘서트 + 워크숍" data-en="Talk Concert + Workshop">토크콘서트 + 워크숍</span>
+                <div class="max-w-5xl mx-auto">
+                    <!-- Dynamic Abstract Graphic Banner (Replaced Photo) -->
+                    <div class="w-full h-64 md:h-80 rounded-3xl overflow-hidden mb-12 reveal shadow-2xl relative bg-primary flex items-center justify-center">
+                        
+                        <!-- Dynamic Background Gradients -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-40">
+                            <div class="w-[40rem] h-[40rem] bg-gradient-to-r from-secondary-dark to-accent rounded-full blur-[80px] animate-pulse-slow"></div>
                         </div>
-                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl text-center hover:bg-white/20 transition-colors">
-                            <strong class="block text-sm text-secondary-light mb-2 i18n" data-ko="기간" data-en="Duration">기간</strong>
-                            <span class="font-medium text-lg i18n" data-ko="4주 (주 1회)" data-en="4 Weeks (Once a week)">4주 (주 1회)</span>
+                        
+                        <!-- Pattern Overlay -->
+                        <svg class="absolute inset-0 w-full h-full opacity-20 mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <circle cx="2" cy="2" r="1" fill="#ffffff"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#dots)" />
+                        </svg>
+                        
+                        <!-- Decorative Abstract Line Art -->
+                        <div class="absolute top-0 right-0 p-8 opacity-10">
+                            <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         </div>
-                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl text-center hover:bg-white/20 transition-colors">
-                            <strong class="block text-sm text-secondary-light mb-2 i18n" data-ko="정원" data-en="Capacity">정원</strong>
-                            <span class="font-medium text-lg i18n" data-ko="30명 내외" data-en="Around 30 people">30명 내외</span>
+                        <div class="absolute bottom-0 left-0 p-8 opacity-10 transform rotate-180">
+                            <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                         </div>
-                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl text-center hover:bg-white/20 transition-colors">
-                            <strong class="block text-sm text-secondary-light mb-2 i18n" data-ko="비용" data-en="Fee">비용</strong>
-                            <span class="font-medium text-lg i18n" data-ko="무료 (전액지원)" data-en="Free (Fully Funded)">무료 (전액지원)</span>
+
+                        <!-- Text Overlay -->
+                        <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white p-6 text-center backdrop-blur-sm">
+                            <span class="px-5 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-bold tracking-wider mb-4 border border-white/20 i18n" data-ko="4-Week Journey" data-en="4-Week Journey">4-Week Journey</span>
+                            <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white shadow-sm i18n" data-ko="함께 고민하고, 직접 만들어가는 워크숍" data-en="A workshop where we think together and build">함께 고민하고, 직접 만들어가는 워크숍</h3>
+                        </div>
+                    </div>
+
+                    <!-- Info Banner -->
+                    <div class="bg-white border border-slate-100 p-8 md:p-12 rounded-3xl shadow-xl mb-16 reveal relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-secondary/10 to-purple-500/10 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2"></div>
+                        
+                        <h3 class="text-2xl md:text-3xl font-bold mb-10 text-center text-primary i18n" data-ko="🎯 청년 주도형 미래설계 프로그램" data-en="🎯 Youth-Led Future Design Program">🎯 청년 주도형 미래설계 프로그램</h3>
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                            <div class="bg-slate-50 border border-slate-100 p-6 rounded-2xl text-center hover:shadow-md transition-shadow">
+                                <strong class="block text-sm text-secondary-dark mb-2 i18n" data-ko="형식" data-en="Format">형식</strong>
+                                <span class="font-medium text-lg text-slate-700 i18n" data-ko="토크콘서트 + 워크숍" data-en="Talk Concert + Workshop">토크콘서트 + 워크숍</span>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-100 p-6 rounded-2xl text-center hover:shadow-md transition-shadow">
+                                <strong class="block text-sm text-secondary-dark mb-2 i18n" data-ko="기간" data-en="Duration">기간</strong>
+                                <span class="font-medium text-lg text-slate-700 i18n" data-ko="4주 (주 1회)" data-en="4 Weeks (Once a week)">4주 (주 1회)</span>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-100 p-6 rounded-2xl text-center hover:shadow-md transition-shadow">
+                                <strong class="block text-sm text-secondary-dark mb-2 i18n" data-ko="정원" data-en="Capacity">정원</strong>
+                                <span class="font-medium text-lg text-slate-700 i18n" data-ko="30명 내외" data-en="Around 30 people">30명 내외</span>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-100 p-6 rounded-2xl text-center hover:shadow-md transition-shadow">
+                                <strong class="block text-sm text-secondary-dark mb-2 i18n" data-ko="비용" data-en="Fee">비용</strong>
+                                <span class="font-medium text-lg text-slate-700 i18n" data-ko="무료 (전액지원)" data-en="Free (Fully Funded)">무료 (전액지원)</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -425,6 +526,83 @@
                 </div>
             </div>
         </section>
+
+        <!-- Blog & Activity Section -->
+        <section id="blog-activity" class="py-24 bg-white relative overflow-hidden">
+            <!-- Decorative bg -->
+            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-green-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 reveal gap-8">
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <span class="text-[#03c75a] font-bold tracking-wider uppercase text-sm mb-2 block i18n" data-ko="활동 소식" data-en="Activity News">활동 소식</span>
+                        <h2 class="text-3xl md:text-5xl font-bold text-primary mb-6 i18n" data-ko="협회의 생생한 이야기를 만나보세요" data-en="Discover Our Vivid Stories">협회의 생생한 이야기를 만나보세요</h2>
+                        <p class="text-slate-500 text-lg i18n" data-ko="프로그램 후기, 청년들의 인터뷰, 그리고 앞으로의 일정까지. 네이버 블로그에서 가장 빠르게 소식을 전합니다." data-en="Program reviews, youth interviews, and upcoming schedules. Get the latest news on our Naver Blog.">프로그램 후기, 청년들의 인터뷰, 그리고 앞으로의 일정까지. 네이버 블로그에서 가장 빠르게 소식을 전합니다.</p>
+                    </div>
+                    <div class="md:w-1/2 flex flex-col sm:flex-row gap-4 justify-center md:justify-end w-full">
+                        <a href="https://blog.naver.com/nextyouthkorea" target="_blank" rel="noopener noreferrer" class="bg-[#03c75a] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#02b351] hover:shadow-lg hover:shadow-green-500/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group">
+                            <svg class="w-5 h-5 group-hover:animate-bounce" viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"/></svg>
+                            <span class="i18n" data-ko="블로그 방문하기" data-en="Visit Blog">블로그 방문하기</span>
+                        </a>
+                        <a href="#contact" class="bg-slate-100 text-slate-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-200 hover:text-primary transition-all flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <span class="i18n" data-ko="문의하기" data-en="Contact Us">문의하기</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Blog Post Mockups -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Post 1 -->
+                    <a href="https://blog.naver.com/nextyouthkorea" target="_blank" class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal block hover:-translate-y-2">
+                        <div class="h-48 bg-slate-200 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                                <span class="text-5xl drop-shadow-md">🚀</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-green-100 text-[#03c75a] text-xs font-bold rounded-full i18n" data-ko="프로그램 후기" data-en="Program Review">프로그램 후기</span>
+                                <span class="text-slate-400 text-xs i18n" data-ko="최신 글" data-en="New">최신 글</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-primary mb-2 group-hover:text-[#03c75a] transition-colors i18n" data-ko="1기 미래설계 워크숍 현장 스케치" data-en="Sketch of 1st Future Design Workshop">1기 미래설계 워크숍 현장 스케치</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2 i18n" data-ko="뜨거웠던 열기로 가득했던 1기 워크숍 현장을 공개합니다. 자신만의 길을 찾아가는..." data-en="Revealing the passionate site of our 1st workshop. Finding their own path...">뜨거웠던 열기로 가득했던 1기 워크숍 현장을 공개합니다. 자신만의 길을 찾아가는...</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Post 2 -->
+                    <a href="https://blog.naver.com/nextyouthkorea" target="_blank" class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal block hover:-translate-y-2" style="transition-delay: 100ms;">
+                        <div class="h-48 bg-slate-200 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-green-100 to-teal-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                                <span class="text-5xl drop-shadow-md">💡</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded-full i18n" data-ko="청년 인터뷰" data-en="Youth Interview">청년 인터뷰</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-primary mb-2 group-hover:text-[#03c75a] transition-colors i18n" data-ko="정해진 트랙을 벗어나 나만의 길을 만들다" data-en="Off the beaten track, making my own way">정해진 트랙을 벗어나 나만의 길을 만들다</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2 i18n" data-ko="노코드 툴을 활용해 자신의 아이디어를 3일만에 서비스로 런칭한 참여자 인터뷰" data-en="Interview with a participant who launched their idea in 3 days using no-code tools.">노코드 툴을 활용해 자신의 아이디어를 3일만에 서비스로 런칭한 참여자 인터뷰</p>
+                        </div>
+                    </a>
+
+                    <!-- Post 3 -->
+                    <a href="https://blog.naver.com/nextyouthkorea" target="_blank" class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal block hover:-translate-y-2" style="transition-delay: 200ms;">
+                        <div class="h-48 bg-slate-200 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                                <span class="text-5xl drop-shadow-md">📢</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 text-xs font-bold rounded-full i18n" data-ko="공지사항" data-en="Notice">공지사항</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-primary mb-2 group-hover:text-[#03c75a] transition-colors i18n" data-ko="하반기 청년미래교육 모집 안내" data-en="Recruitment for 2nd Half Education">하반기 청년미래교육 모집 안내</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2 i18n" data-ko="AI 활용부터 진로 설계까지! 하반기 프로그램에 함께할 청년들을 기다립니다." data-en="From AI utilization to career design! We are waiting for youth to join our 2nd half program.">AI 활용부터 진로 설계까지! 하반기 프로그램에 함께할 청년들을 기다립니다.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
         
         <!-- Partners Section -->
         <section id="partners" class="py-24 bg-slate-50">
@@ -485,6 +663,7 @@
                  <div>
                     <h4 class="font-bold text-white text-lg mb-6 i18n" data-ko="소통 채널" data-en="Channels">소통 채널</h4>
                      <ul class="space-y-3">
+                        <li><a href="https://blog.naver.com/nextyouthkorea" target="_blank" rel="noopener noreferrer" class="hover:text-[#03c75a] transition-colors flex items-center justify-center md:justify-start gap-2"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"/></svg> <span class="i18n" data-ko="네이버 블로그" data-en="Naver Blog">네이버 블로그</span></a></li>
                         <li><a href="https://www.instagram.com/opcl.official/" target="_blank" rel="noopener noreferrer" class="hover:text-secondary-light transition-colors flex items-center justify-center md:justify-start gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg> Instagram</a></li>
                         <li><a href="https://www.youtube.com/@opcl.official" target="_blank" rel="noopener noreferrer" class="hover:text-secondary-light transition-colors flex items-center justify-center md:justify-start gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd" /></svg> YouTube</a></li>
                         <li><a href="https://opcl-letter.stibee.com/subscribe/" target="_blank" rel="noopener noreferrer" class="hover:text-secondary-light transition-colors flex items-center justify-center md:justify-start gap-2"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> Newsletter</a></li>

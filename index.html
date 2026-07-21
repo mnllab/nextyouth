@@ -147,17 +147,16 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-50">
-            <!-- Decorative Background Elements -->
-            <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
-            <div class="absolute top-0 -right-4 w-72 h-72 bg-secondary-light rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"></div>
-            <div class="absolute -bottom-8 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-4000"></div>
+            <!-- Decorative Background Elements (subtle) -->
+            <div class="absolute top-0 -right-20 w-96 h-96 bg-secondary-light rounded-full filter blur-3xl opacity-15"></div>
+            <div class="absolute -bottom-16 -left-16 w-96 h-96 bg-blue-200 rounded-full filter blur-3xl opacity-15"></div>
             <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiAvPgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjZTFlMWUxIiAvPgo8L3N2Zz4=')] opacity-50"></div>
 
             <div class="relative container mx-auto px-6 z-10 flex flex-col lg:flex-row items-center gap-12">
                 <!-- Text Content -->
                 <div class="flex-1 text-center lg:text-left mt-10 lg:mt-0">
                     <div class="inline-block mb-6 px-4 py-1.5 rounded-full bg-white shadow-sm border border-slate-100 animate-fade-in-up" style="animation-delay: 0.1s;">
-                        <span class="bg-gradient-to-r from-secondary-dark to-accent bg-clip-text text-transparent font-bold text-sm tracking-wide i18n" data-ko="✨ 당신만의 길을 개척하세요" data-en="✨ Forge Your Own Path">✨ 당신만의 길을 개척하세요</span>
+                        <span class="bg-gradient-to-r from-secondary-dark to-accent bg-clip-text text-transparent font-bold text-sm tracking-wide i18n" data-ko="한국청년미래협회" data-en="Korea Youth Future Association">한국청년미래협회</span>
                     </div>
                     
                     <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight text-primary animate-fade-in-up" style="animation-delay: 0.2s;">
@@ -180,70 +179,173 @@
                     </div>
                 </div>
 
-                <!-- Abstract Vector Graphic Content (Replaced Photo) -->
-                <div class="flex-1 relative hidden md:block animate-fade-in-up" style="animation-delay: 0.5s;">
-                    <div class="relative w-full max-w-lg mx-auto h-[450px] lg:h-[550px]">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-slate-100 to-white rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden flex items-center justify-center">
-                            
-                            <!-- Background Grid -->
-                            <svg class="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <pattern id="hero-grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                                        <circle cx="2" cy="2" r="1" fill="#cbd5e1"/>
-                                    </pattern>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#hero-grid)" />
-                            </svg>
-
-                            <!-- Floating Abstract Shapes (Glassmorphism + Gradients) -->
-                            <div class="absolute top-[15%] left-[10%] w-24 h-24 bg-gradient-to-br from-secondary to-blue-400 rounded-full opacity-80 mix-blend-multiply blur-[2px] animate-blob shadow-xl shadow-secondary/30"></div>
-                            <div class="absolute top-[20%] right-[15%] w-32 h-32 bg-gradient-to-br from-accent to-purple-500 rounded-3xl rotate-12 opacity-80 mix-blend-multiply blur-[2px] animate-blob animation-delay-2000 shadow-xl shadow-accent/30"></div>
-                            <div class="absolute bottom-[15%] left-[25%] w-40 h-40 bg-gradient-to-br from-teal-300 to-emerald-400 rounded-[2rem] -rotate-12 opacity-80 mix-blend-multiply blur-[2px] animate-blob animation-delay-4000 shadow-xl shadow-teal-400/30"></div>
-
-                            <!-- Decorative SVG Connection Lines -->
-                            <svg class="absolute inset-0 w-full h-full z-0" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M -50 400 C 150 400, 200 150, 400 250 C 600 350, 700 100, 900 150" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-dasharray="10 10" />
-                                <circle cx="400" cy="250" r="6" fill="#818cf8" />
-                                <circle cx="210" cy="285" r="4" fill="#38bdf8" />
-                            </svg>
-
-                            <!-- Central Focus Area -->
-                            <div class="relative z-10 w-56 h-56 bg-white/60 backdrop-blur-xl border border-white/80 rounded-[2.5rem] shadow-2xl flex flex-col items-center justify-center p-6 group hover:scale-105 transition-transform duration-500">
-                                <div class="w-16 h-16 bg-gradient-to-tr from-primary to-slate-700 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:-translate-y-2 transition-transform duration-300">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                                </div>
-                                <div class="h-2 w-16 bg-slate-200 rounded-full mb-2"></div>
-                                <div class="h-2 w-10 bg-slate-200 rounded-full mb-6"></div>
-                                
-                                <div class="flex gap-2">
-                                    <div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-xs border border-secondary/30">💻</div>
-                                    <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-xs -ml-3 border-2 border-white shadow-sm">💡</div>
-                                    <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-xs -ml-3 border-2 border-white shadow-sm">📈</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Floating Info Card 1 -->
-                            <div class="absolute bottom-10 left-4 glass-card p-4 rounded-2xl flex items-center gap-4 z-20 hover:-translate-y-1 transition-transform">
-                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-lg">🚀</div>
-                                <div>
-                                    <p class="text-[10px] text-slate-500 font-bold i18n" data-ko="NEXT YOUTH" data-en="NEXT YOUTH">NEXT YOUTH</p>
-                                    <p class="text-xs font-bold text-primary i18n" data-ko="미래 설계" data-en="Future Design">미래 설계</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Floating Info Card 2 -->
-                            <div class="absolute top-10 right-4 glass-card p-3 rounded-2xl flex items-center gap-3 z-20 hover:-translate-y-1 transition-transform">
-                                <div class="w-8 h-8 bg-gradient-to-br from-secondary to-blue-500 rounded-full flex items-center justify-center text-white text-sm shadow-md">✨</div>
-                                <p class="text-xs font-bold text-primary pr-2 i18n" data-ko="나만의 길" data-en="My Path">나만의 길</p>
-                            </div>
+                <!-- ============================================================
+                     협회 단체 사진 (상단 대표 이미지)
+                     * 사진 넣는 법: 아래 <img ... src=""> 안에 이미지 주소를 붙여넣으세요.
+                       주소를 넣으면 사진이 자동 표시되고, 비어 있으면 안내 박스가 보입니다.
+                     ============================================================ -->
+                <div class="flex-1 relative w-full mt-4 lg:mt-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="relative w-full max-w-lg mx-auto aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
+                        <!-- ▼ 사진 추가: src="" 안에 단체 사진 주소 입력 -->
+                        <img data-photo-slot="team-photo" src="" alt="한국청년미래협회 구성원 단체 사진" class="photo-img w-full h-full object-cover">
+                        <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400">
+                            <span class="text-4xl mb-2">👥</span>
+                            <span class="text-sm font-semibold i18n" data-ko="협회 단체 사진 추가 위치" data-en="Add team photo here">협회 단체 사진 추가 위치</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Blog & Activity Section -->
+        <section id="blog-activity" class="py-24 bg-white relative overflow-hidden">
+            <!-- Decorative bg -->
+            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-green-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 reveal gap-8">
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <span class="text-[#03c75a] font-bold tracking-wider uppercase text-sm mb-2 block i18n" data-ko="활동 & 소식" data-en="Activities & News">활동 & 소식</span>
+                        <h2 class="text-3xl md:text-5xl font-bold text-primary mb-6 i18n" data-ko="청년과 함께한 협회의 활동" data-en="What We've Done With Youth">청년과 함께한 협회의 활동</h2>
+                        <p class="text-slate-500 text-lg i18n" data-ko="2025년부터 이어온 세미나, 상담회, 토크콘서트 등 청년과 함께한 현장을 소개합니다. 더 많은 소식은 네이버 블로그에서 확인하실 수 있습니다." data-en="Seminars, counseling sessions, and talk concerts we've held with youth since 2025. Find more updates on our Naver Blog.">2025년부터 이어온 세미나, 상담회, 토크콘서트 등 청년과 함께한 현장을 소개합니다. 더 많은 소식은 네이버 블로그에서 확인하실 수 있습니다.</p>
+                    </div>
+                    <div class="md:w-1/2 flex flex-col sm:flex-row gap-4 justify-center md:justify-end w-full">
+                        <a href="https://blog.naver.com/nextyouthkorea" target="_blank" rel="noopener noreferrer" class="bg-[#03c75a] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#02b351] hover:shadow-lg hover:shadow-green-500/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group">
+                            <svg class="w-5 h-5 group-hover:animate-bounce" viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"/></svg>
+                            <span class="i18n" data-ko="블로그 방문하기" data-en="Visit Blog">블로그 방문하기</span>
+                        </a>
+                        <a href="#contact" class="bg-slate-100 text-slate-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-200 hover:text-primary transition-all flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <span class="i18n" data-ko="문의하기" data-en="Contact Us">문의하기</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ============================================================
+                     NOTICE BANNER (공지)
+                     * 다가오는 행사가 있으면 아래 제목/설명 문구를 실제 내용으로 바꾸세요.
+                     ============================================================ -->
+                <div class="reveal mb-14 rounded-3xl overflow-hidden bg-primary text-white relative">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(circle at 15% 30%, rgba(56,189,248,0.35), transparent 45%), radial-gradient(circle at 85% 60%, rgba(129,140,248,0.35), transparent 45%);"></div>
+                    <div class="relative z-10 p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+                        <div>
+                            <span class="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-xs font-bold tracking-widest mb-4">NOTICE</span>
+                            <h3 class="text-2xl md:text-3xl font-bold mb-3 i18n" data-ko="프로그램 · 세미나 참가자 상시 모집" data-en="Now Recruiting for Our Programs & Seminars">프로그램 · 세미나 참가자 상시 모집</h3>
+                            <p class="text-slate-200 leading-relaxed max-w-xl i18n" data-ko="미래설계 워크숍과 창업·진로 세미나 참여를 원하시면 언제든 문의해 주세요. 다음 행사 일정은 네이버 블로그에서 가장 빠르게 안내드립니다." data-en="If you'd like to join our future-design workshops or startup and career seminars, reach out anytime. The fastest updates on upcoming events are posted on our Naver Blog.">미래설계 워크숍과 창업·진로 세미나 참여를 원하시면 언제든 문의해 주세요. 다음 행사 일정은 네이버 블로그에서 가장 빠르게 안내드립니다.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+                            <a href="#contact" class="whitespace-nowrap text-center bg-white text-primary px-7 py-3 rounded-full font-bold hover:bg-secondary-light transition-colors i18n" data-ko="참가 문의하기" data-en="Ask to Join">참가 문의하기</a>
+                            <a href="https://blog.naver.com/nextyouthkorea" target="_blank" rel="noopener noreferrer" class="whitespace-nowrap text-center border border-white/40 px-7 py-3 rounded-full font-bold hover:bg-white/10 transition-colors i18n" data-ko="블로그에서 일정 보기" data-en="See Schedule on Blog">블로그에서 일정 보기</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section label for past events -->
+                <h3 class="text-center text-primary font-bold text-2xl md:text-3xl mb-10 reveal i18n" data-ko="지난 행사" data-en="Past Events">지난 행사</h3>
+
+                <!-- ============================================================
+                     EVENT CARDS (지난 행사 · 2025~2026)
+                     * 사진 넣는 법: 각 카드의 <img ... src=""> 안에 이미지 주소를 붙여넣으세요.
+                       예) src="https://blog.naver.com/.../image.jpg"
+                       주소를 넣으면 사진이 자동으로 표시되고, 비어 있으면 안내 박스가 보입니다.
+                     * 2025년 행사의 정확한 날짜/제목은 실제 내용으로 자유롭게 수정하세요.
+                     ============================================================ -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <!-- Event 1 : 토크콘서트 (2026.05.14) -->
+                    <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal">
+                        <div class="relative h-52 overflow-hidden">
+                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
+                            <img data-photo-slot="event-1" src="" alt="3인 3색, 인생설계 톡톡톡" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-100 text-slate-500">
+                                <span class="text-3xl mb-1">📷</span>
+                                <span class="text-xs font-semibold i18n" data-ko="활동 사진 추가" data-en="Add photo">활동 사진 추가</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3 flex-wrap">
+                                <span class="px-3 py-1 bg-secondary/10 text-secondary-dark text-xs font-bold rounded-full i18n" data-ko="토크콘서트" data-en="Talk Concert">토크콘서트</span>
+                                <span class="text-slate-400 text-xs i18n" data-ko="2026.05.14 (목)" data-en="May 14, 2026 (Thu)">2026.05.14 (목)</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="3인 3색, 인생설계 톡톡톡" data-en="3 People, 3 Colors: Life Design Talk">3인 3색, 인생설계 톡톡톡</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="세 연사가 각자의 삶과 진로 설계 이야기를 나눈 토크 콘서트" data-en="A talk concert where three speakers shared their own life and career-design journeys.">세 연사가 각자의 삶과 진로 설계 이야기를 나눈 토크 콘서트</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 : 취·창업 상담회 (2025) -->
+                    <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 100ms;">
+                        <div class="relative h-52 overflow-hidden">
+                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
+                            <img data-photo-slot="event-2" src="" alt="청년 취·창업 상담회" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-green-100 to-teal-100 text-slate-500">
+                                <span class="text-3xl mb-1">📷</span>
+                                <span class="text-xs font-semibold i18n" data-ko="활동 사진 추가" data-en="Add photo">활동 사진 추가</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3 flex-wrap">
+                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full i18n" data-ko="상담회" data-en="Counseling">상담회</span>
+                                <span class="text-slate-400 text-xs i18n" data-ko="2025" data-en="2025">2025</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="청년 취·창업 상담회" data-en="Youth Employment & Startup Counseling">청년 취·창업 상담회</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="청년을 대상으로 취업과 창업 진로를 1:1로 상담한 현장" data-en="One-on-one counseling for youth on employment and startup career paths.">청년을 대상으로 취업과 창업 진로를 1:1로 상담한 현장</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 : 특강/강의 (2025) -->
+                    <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 200ms;">
+                        <div class="relative h-52 overflow-hidden">
+                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
+                            <img data-photo-slot="event-3" src="" alt="미래역량·창업 특강" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-orange-100 to-amber-100 text-slate-500">
+                                <span class="text-3xl mb-1">📷</span>
+                                <span class="text-xs font-semibold i18n" data-ko="활동 사진 추가" data-en="Add photo">활동 사진 추가</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3 flex-wrap">
+                                <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full i18n" data-ko="특강" data-en="Lecture">특강</span>
+                                <span class="text-slate-400 text-xs i18n" data-ko="2025" data-en="2025">2025</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="미래역량 · 창업 특강" data-en="Future Skills & Startup Lecture">미래역량 · 창업 특강</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="청년을 위한 미래 역량과 창업 실무를 다룬 강의" data-en="A lecture covering future competencies and practical startup skills for youth.">청년을 위한 미래 역량과 창업 실무를 다룬 강의</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 4 : 세미나 (2025) -->
+                    <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 300ms;">
+                        <div class="relative h-52 overflow-hidden">
+                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
+                            <img data-photo-slot="event-4" src="" alt="청년 창업·진로 세미나" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100 text-slate-500">
+                                <span class="text-3xl mb-1">📷</span>
+                                <span class="text-xs font-semibold i18n" data-ko="활동 사진 추가" data-en="Add photo">활동 사진 추가</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3 flex-wrap">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full i18n" data-ko="세미나" data-en="Seminar">세미나</span>
+                                <span class="text-slate-400 text-xs i18n" data-ko="2025" data-en="2025">2025</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="청년 창업 · 진로 세미나" data-en="Youth Startup & Career Seminar">청년 창업 · 진로 세미나</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="창업과 진로 설계를 주제로 청년과 함께한 세미나" data-en="A seminar with youth on startup and career design.">창업과 진로 설계를 주제로 청년과 함께한 세미나</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 블로그 참조 안내 -->
+                <div class="text-center mt-12 reveal">
+                    <p class="text-slate-500 text-base md:text-lg i18n" data-ko="각 행사의 자세한 후기와 사진은 협회 네이버 블로그에서 확인하실 수 있습니다." data-en="Detailed recaps and photos of each event are available on our Naver Blog.">각 행사의 자세한 후기와 사진은 협회 네이버 블로그에서 확인하실 수 있습니다.</p>
+                    <a href="https://blog.naver.com/nextyouthkorea" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-[#03c75a] font-bold hover:underline">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"/></svg>
+                        <span class="i18n" data-ko="네이버 블로그에서 자세히 보기" data-en="See more on our Naver Blog">네이버 블로그에서 자세히 보기</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Core Values Section -->
-        <section id="values" class="py-24 bg-white relative">
+        <section id="values" class="py-24 bg-slate-50 relative">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-20 reveal">
                     <h2 class="text-3xl md:text-5xl font-bold text-primary mb-6 i18n" data-ko="왜 우리는 청년의 삶을 먼저 묻는가?" data-en="Why Do We Focus on Youth's Lives First?">왜 우리는 청년의 삶을 먼저 묻는가?</h2>
@@ -514,23 +616,6 @@
                     <p class="max-w-3xl mx-auto text-slate-300 text-lg leading-relaxed i18n" data-ko="한국청년미래협회는 청년들이 자기 삶에서 출발해 진로와 미래를 스스로 설계하도록 돕는 비영리 단체입니다. 진로 탐색 워크숍, 창업·미래역량 세미나, AI·노코드 실습 교육, 1:1 멘토링을 운영하며, 청년들이 배운 것을 실제 프로젝트로 연결하도록 지원합니다." data-en="The Korea Youth Future Association is a non-profit organization that helps young people design their own careers and futures, starting from their own lives. We run career-exploration workshops, startup and future-skills seminars, hands-on AI and no-code education, and one-on-one mentoring, supporting youth in turning what they learn into real projects.">한국청년미래협회는 청년들이 자기 삶에서 출발해 진로와 미래를 스스로 설계하도록 돕는 비영리 단체입니다. 진로 탐색 워크숍, 창업·미래역량 세미나, AI·노코드 실습 교육, 1:1 멘토링을 운영하며, 청년들이 배운 것을 실제 프로젝트로 연결하도록 지원합니다.</p>
                 </div>
 
-                <!-- ============================================================
-                     단체 사진 (협회 구성원)
-                     * 사진 넣는 법: 아래 <img ... src=""> 안에 이미지 주소를 붙여넣으세요.
-                       주소를 넣으면 사진이 자동 표시되고, 비어 있으면 안내 박스가 보입니다.
-                     ============================================================ -->
-                <div class="max-w-5xl mx-auto mb-16 reveal">
-                    <div class="relative w-full aspect-[16/7] rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
-                        <!-- ▼ 사진 추가: src="" 안에 단체 사진 주소 입력 -->
-                        <img data-photo-slot="team-photo" src="" alt="한국청년미래협회 단체 사진" class="photo-img w-full h-full object-cover">
-                        <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-700 text-slate-300">
-                            <span class="text-4xl mb-2">👥</span>
-                            <span class="text-sm font-semibold i18n" data-ko="협회 단체 사진 추가 위치" data-en="Add team photo here">협회 단체 사진 추가 위치</span>
-                        </div>
-                    </div>
-                    <p class="text-center text-slate-400 text-sm mt-4 i18n" data-ko="청년의 미래를 함께 설계하는 한국청년미래협회 구성원" data-en="The members of the Korea Youth Future Association, designing the future of youth together.">청년의 미래를 함께 설계하는 한국청년미래협회 구성원</p>
-                </div>
-
                 <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     <div class="dark-glass-card p-12 rounded-3xl text-center reveal border border-white/20 hover:border-secondary/50 transition-colors">
                         <div class="w-16 h-16 mx-auto bg-gradient-to-br from-secondary to-blue-500 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-secondary/30 text-2xl">🎯</div>
@@ -546,145 +631,6 @@
             </div>
         </section>
 
-        <!-- Blog & Activity Section -->
-        <section id="blog-activity" class="py-24 bg-white relative overflow-hidden">
-            <!-- Decorative bg -->
-            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-green-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="flex flex-col md:flex-row items-center justify-between mb-16 reveal gap-8">
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <span class="text-[#03c75a] font-bold tracking-wider uppercase text-sm mb-2 block i18n" data-ko="활동 & 소식" data-en="Activities & News">활동 & 소식</span>
-                        <h2 class="text-3xl md:text-5xl font-bold text-primary mb-6 i18n" data-ko="청년과 함께한 협회의 활동" data-en="What We've Done With Youth">청년과 함께한 협회의 활동</h2>
-                        <p class="text-slate-500 text-lg i18n" data-ko="2025년부터 이어온 세미나, 상담회, 토크콘서트 등 청년과 함께한 현장을 소개합니다. 더 많은 소식은 네이버 블로그에서 확인하실 수 있습니다." data-en="Seminars, counseling sessions, and talk concerts we've held with youth since 2025. Find more updates on our Naver Blog.">2025년부터 이어온 세미나, 상담회, 토크콘서트 등 청년과 함께한 현장을 소개합니다. 더 많은 소식은 네이버 블로그에서 확인하실 수 있습니다.</p>
-                    </div>
-                    <div class="md:w-1/2 flex flex-col sm:flex-row gap-4 justify-center md:justify-end w-full">
-                        <a href="https://blog.naver.com/nextyouthkorea" target="_blank" rel="noopener noreferrer" class="bg-[#03c75a] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#02b351] hover:shadow-lg hover:shadow-green-500/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group">
-                            <svg class="w-5 h-5 group-hover:animate-bounce" viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"/></svg>
-                            <span class="i18n" data-ko="블로그 방문하기" data-en="Visit Blog">블로그 방문하기</span>
-                        </a>
-                        <a href="#contact" class="bg-slate-100 text-slate-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-200 hover:text-primary transition-all flex items-center justify-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <span class="i18n" data-ko="문의하기" data-en="Contact Us">문의하기</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- ============================================================
-                     NOTICE BANNER (공지)
-                     * 다가오는 행사가 있으면 아래 제목/설명 문구를 실제 내용으로 바꾸세요.
-                     ============================================================ -->
-                <div class="reveal mb-14 rounded-3xl overflow-hidden bg-primary text-white relative">
-                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(circle at 15% 30%, rgba(56,189,248,0.35), transparent 45%), radial-gradient(circle at 85% 60%, rgba(129,140,248,0.35), transparent 45%);"></div>
-                    <div class="relative z-10 p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
-                        <div>
-                            <span class="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-xs font-bold tracking-widest mb-4">NOTICE</span>
-                            <h3 class="text-2xl md:text-3xl font-bold mb-3 i18n" data-ko="프로그램 · 세미나 참가자 상시 모집" data-en="Now Recruiting for Our Programs & Seminars">프로그램 · 세미나 참가자 상시 모집</h3>
-                            <p class="text-slate-200 leading-relaxed max-w-xl i18n" data-ko="미래설계 워크숍과 창업·진로 세미나 참여를 원하시면 언제든 문의해 주세요. 다음 행사 일정은 네이버 블로그에서 가장 빠르게 안내드립니다." data-en="If you'd like to join our future-design workshops or startup and career seminars, reach out anytime. The fastest updates on upcoming events are posted on our Naver Blog.">미래설계 워크숍과 창업·진로 세미나 참여를 원하시면 언제든 문의해 주세요. 다음 행사 일정은 네이버 블로그에서 가장 빠르게 안내드립니다.</p>
-                        </div>
-                        <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
-                            <a href="#contact" class="whitespace-nowrap text-center bg-white text-primary px-7 py-3 rounded-full font-bold hover:bg-secondary-light transition-colors i18n" data-ko="참가 문의하기" data-en="Ask to Join">참가 문의하기</a>
-                            <a href="https://blog.naver.com/nextyouthkorea" target="_blank" rel="noopener noreferrer" class="whitespace-nowrap text-center border border-white/40 px-7 py-3 rounded-full font-bold hover:bg-white/10 transition-colors i18n" data-ko="블로그에서 일정 보기" data-en="See Schedule on Blog">블로그에서 일정 보기</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section label for past events -->
-                <h3 class="text-center text-primary font-bold text-2xl md:text-3xl mb-10 reveal i18n" data-ko="지난 행사" data-en="Past Events">지난 행사</h3>
-
-                <!-- ============================================================
-                     EVENT CARDS (지난 행사 · 2025~2026)
-                     * 사진 넣는 법: 각 카드의 <img ... src=""> 안에 이미지 주소를 붙여넣으세요.
-                       예) src="https://blog.naver.com/.../image.jpg"
-                       주소를 넣으면 사진이 자동으로 표시되고, 비어 있으면 안내 박스가 보입니다.
-                     * 2025년 행사의 정확한 날짜/제목은 실제 내용으로 자유롭게 수정하세요.
-                     ============================================================ -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                    <!-- Event 1 : 토크콘서트 (2026.05.14) -->
-                    <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal">
-                        <div class="relative h-52 overflow-hidden">
-                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
-                            <img data-photo-slot="event-1" src="" alt="3인 3색, 인생설계 톡톡톡" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-100 text-slate-500">
-                                <span class="text-3xl mb-1">📷</span>
-                                <span class="text-xs font-semibold i18n" data-ko="활동 사진 추가" data-en="Add photo">활동 사진 추가</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 mb-3 flex-wrap">
-                                <span class="px-3 py-1 bg-secondary/10 text-secondary-dark text-xs font-bold rounded-full i18n" data-ko="토크콘서트" data-en="Talk Concert">토크콘서트</span>
-                                <span class="text-slate-400 text-xs i18n" data-ko="2026.05.14 (목)" data-en="May 14, 2026 (Thu)">2026.05.14 (목)</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="3인 3색, 인생설계 톡톡톡" data-en="3 People, 3 Colors: Life Design Talk">3인 3색, 인생설계 톡톡톡</h4>
-                            <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="세 연사가 각자의 삶과 진로 설계 이야기를 나눈 토크 콘서트" data-en="A talk concert where three speakers shared their own life and career-design journeys.">세 연사가 각자의 삶과 진로 설계 이야기를 나눈 토크 콘서트</p>
-                        </div>
-                    </div>
-
-                    <!-- Event 2 : 취·창업 상담회 (2025) -->
-                    <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 100ms;">
-                        <div class="relative h-52 overflow-hidden">
-                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
-                            <img data-photo-slot="event-2" src="" alt="청년 취·창업 상담회" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-green-100 to-teal-100 text-slate-500">
-                                <span class="text-3xl mb-1">📷</span>
-                                <span class="text-xs font-semibold i18n" data-ko="활동 사진 추가" data-en="Add photo">활동 사진 추가</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 mb-3 flex-wrap">
-                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full i18n" data-ko="상담회" data-en="Counseling">상담회</span>
-                                <span class="text-slate-400 text-xs i18n" data-ko="2025" data-en="2025">2025</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="청년 취·창업 상담회" data-en="Youth Employment & Startup Counseling">청년 취·창업 상담회</h4>
-                            <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="청년을 대상으로 취업과 창업 진로를 1:1로 상담한 현장" data-en="One-on-one counseling for youth on employment and startup career paths.">청년을 대상으로 취업과 창업 진로를 1:1로 상담한 현장</p>
-                        </div>
-                    </div>
-
-                    <!-- Event 3 : 특강/강의 (2025) -->
-                    <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 200ms;">
-                        <div class="relative h-52 overflow-hidden">
-                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
-                            <img data-photo-slot="event-3" src="" alt="미래역량·창업 특강" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-orange-100 to-amber-100 text-slate-500">
-                                <span class="text-3xl mb-1">📷</span>
-                                <span class="text-xs font-semibold i18n" data-ko="활동 사진 추가" data-en="Add photo">활동 사진 추가</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 mb-3 flex-wrap">
-                                <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full i18n" data-ko="특강" data-en="Lecture">특강</span>
-                                <span class="text-slate-400 text-xs i18n" data-ko="2025" data-en="2025">2025</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="미래역량 · 창업 특강" data-en="Future Skills & Startup Lecture">미래역량 · 창업 특강</h4>
-                            <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="청년을 위한 미래 역량과 창업 실무를 다룬 강의" data-en="A lecture covering future competencies and practical startup skills for youth.">청년을 위한 미래 역량과 창업 실무를 다룬 강의</p>
-                        </div>
-                    </div>
-
-                    <!-- Event 4 : 세미나 (2025) -->
-                    <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 300ms;">
-                        <div class="relative h-52 overflow-hidden">
-                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
-                            <img data-photo-slot="event-4" src="" alt="청년 창업·진로 세미나" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100 text-slate-500">
-                                <span class="text-3xl mb-1">📷</span>
-                                <span class="text-xs font-semibold i18n" data-ko="활동 사진 추가" data-en="Add photo">활동 사진 추가</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 mb-3 flex-wrap">
-                                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full i18n" data-ko="세미나" data-en="Seminar">세미나</span>
-                                <span class="text-slate-400 text-xs i18n" data-ko="2025" data-en="2025">2025</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="청년 창업 · 진로 세미나" data-en="Youth Startup & Career Seminar">청년 창업 · 진로 세미나</h4>
-                            <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="창업과 진로 설계를 주제로 청년과 함께한 세미나" data-en="A seminar with youth on startup and career design.">창업과 진로 설계를 주제로 청년과 함께한 세미나</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        
-        <!-- Partners Section -->
         <section id="partners" class="py-24 bg-slate-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 reveal">
@@ -771,7 +717,7 @@
 
                 <!-- Official Domain Notice -->
                 <div class="mt-10 pt-6 border-t border-slate-800 text-center">
-                    <p class="text-xs text-slate-500 leading-relaxed max-w-2xl mx-auto i18n" data-ko="nextyouthkorea.org 도메인은 한국청년미래협회가 공식적으로 소유·운영합니다." data-en="The domain nextyouthkorea.org is officially owned and operated by the Korea Youth Future Association.">nextyouthkorea.org 도메인은 한국청년미래협회가 공식적으로 소유·운영합니다.</p>
+                    <p class="text-sm md:text-base text-white font-medium leading-relaxed max-w-3xl mx-auto i18n" data-ko="nextyouthkorea.org 도메인은 한국청년미래협회가 공식적으로 소유·운영합니다." data-en="The domain nextyouthkorea.org is officially owned and operated by the Korea Youth Future Association.">nextyouthkorea.org 도메인은 한국청년미래협회가 공식적으로 소유·운영합니다.</p>
                 </div>
             </div>
         </div>

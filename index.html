@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -692,38 +692,67 @@
     </footer>
 
     <script>
-        // === Language Toggle Logic ===
-        let currentLang = 'ko';
+        // === Language Logic ===
+        // 기본 언어: 영어 (URL에 ?lang=ko 를 붙이면 한국어, ?lang=en 이면 영어로 열림)
+        const SUPPORTED_LANGS = ['ko', 'en'];
+        const DEFAULT_LANG = 'en';
+        let currentLang = DEFAULT_LANG;
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ko' ? 'en' : 'ko';
-            document.documentElement.lang = currentLang;
-            
-            // Toggle UI Indicator
+        // URL의 ?lang= 파라미터를 읽어서 언어 결정 (없거나 잘못된 값이면 기본 언어)
+        function getLangFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const lang = (params.get('lang') || '').toLowerCase();
+            return SUPPORTED_LANGS.includes(lang) ? lang : DEFAULT_LANG;
+        }
+
+        // 페이지 전체를 지정한 언어로 전환
+        function setLanguage(lang, updateURL = false) {
+            if (!SUPPORTED_LANGS.includes(lang)) lang = DEFAULT_LANG;
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            // 토글 버튼 UI 업데이트
             const indicator = document.getElementById('lang-indicator');
             const mobileText = document.getElementById('mobile-lang-text');
-            
-            if (currentLang === 'en') {
-                indicator.style.transform = 'translateX(24px)';
-                indicator.textContent = 'EN';
-                mobileText.textContent = '한국어';
-            } else {
-                indicator.style.transform = 'translateX(0)';
-                indicator.textContent = 'KR';
-                mobileText.textContent = 'English';
+
+            if (indicator) {
+                if (lang === 'en') {
+                    indicator.style.transform = 'translateX(24px)';
+                    indicator.textContent = 'EN';
+                } else {
+                    indicator.style.transform = 'translateX(0)';
+                    indicator.textContent = 'KR';
+                }
+            }
+            if (mobileText) {
+                mobileText.textContent = lang === 'en' ? '한국어' : 'English';
             }
 
-            // Update all texts
-            const elements = document.querySelectorAll('.i18n');
-            elements.forEach(el => {
-                if (el.dataset[currentLang]) {
-                    el.textContent = el.dataset[currentLang];
+            // 모든 텍스트 교체
+            document.querySelectorAll('.i18n').forEach(el => {
+                if (el.dataset[lang]) {
+                    el.textContent = el.dataset[lang];
                 }
             });
+
+            // 토글로 언어를 바꾼 경우, 주소창의 ?lang= 값도 함께 갱신 (공유 가능한 링크)
+            if (updateURL) {
+                const url = new URL(window.location);
+                url.searchParams.set('lang', lang);
+                history.replaceState(null, '', url);
+            }
+        }
+
+        // 헤더/모바일 메뉴의 언어 토글 버튼
+        function toggleLanguage() {
+            setLanguage(currentLang === 'ko' ? 'en' : 'ko', true);
         }
 
         // === Scroll Effects & Interactivity ===
         document.addEventListener('DOMContentLoaded', () => {
+            // URL 파라미터 기반 초기 언어 적용 (기본: 영어)
+            setLanguage(getLangFromURL());
+
             // Header scroll effect (Glassmorphism toggle)
             const header = document.getElementById('header');
             if (header) {

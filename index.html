@@ -3,7 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한국청년미래협회 - 청년의 삶에서 출발하는 나만의 길 찾기</title>
+    <title>한국청년미래협회 (Korea Youth Future Association) | Registered Non-Profit Organization in South Korea</title>
+
+    <!-- ============================================================
+         단체 검증(구글 비영리단체/테크숩 등) 대비 메타 정보
+         ============================================================ -->
+    <meta name="description" content="Korea Youth Future Association (한국청년미래협회) is a registered non-profit organization in the Republic of Korea. Charity ID / NPO Registration No. 302-82-79641. President: Jang-gil Kim. Official website: nextyouthkorea.org">
+    <meta name="author" content="Korea Youth Future Association (한국청년미래협회)">
+    <link rel="canonical" href="https://nextyouthkorea.org/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Korea Youth Future Association (한국청년미래협회)">
+    <meta property="og:title" content="Korea Youth Future Association (한국청년미래협회) — Registered Non-Profit Organization">
+    <meta property="og:description" content="Registered non-profit organization in the Republic of Korea. Charity ID / NPO Registration No. 302-82-79641. Official website: nextyouthkorea.org">
+    <meta property="og:url" content="https://nextyouthkorea.org/">
+    <meta property="og:image" content="https://nextyouthkorea.org/KYFA_150.png">
+
+    <!-- 구조화 데이터 (검수 시스템/크롤러가 기계적으로 읽는 정보) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Korea Youth Future Association",
+      "alternateName": "한국청년미래협회",
+      "legalName": "한국청년미래협회 (Korea Youth Future Association)",
+      "url": "https://nextyouthkorea.org/",
+      "logo": "https://nextyouthkorea.org/KYFA_150.png",
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "NPO Registration Number issued by the National Tax Service, Republic of Korea (고유번호)",
+        "value": "302-82-79641"
+      },
+      "taxID": "302-82-79641",
+      "nonprofitStatus": "NonprofitType",
+      "founder": {
+        "@type": "Person",
+        "name": "Jang-gil Kim (김장길)"
+      },
+      "employee": {
+        "@type": "Person",
+        "name": "Jang-gil Kim (김장길)",
+        "jobTitle": "President / 협회장"
+      },
+      "email": "janggil.kim@nextyouthkorea.org",
+      "telephone": "+82-502-1919-0921",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "614-A52, 43 Yeouiseo-ro",
+        "addressLocality": "Yeongdeungpo-gu",
+        "addressRegion": "Seoul",
+        "addressCountry": "KR"
+      },
+      "areaServed": "KR",
+      "description": "A registered non-profit organization in the Republic of Korea that helps young people design their own careers and futures through workshops, seminars, AI and no-code education, and one-on-one mentoring.",
+      "sameAs": [
+        "https://blog.naver.com/nextyouthkorea",
+        "https://www.instagram.com/opcl.official/",
+        "https://www.youtube.com/@opcl.official"
+      ]
+    }
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Noto Sans KR & Inter -->
@@ -54,7 +114,10 @@
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; }
         :lang(en) body { font-family: 'Inter', sans-serif; }
-        
+
+        /* 고정 헤더에 가려지지 않도록 앵커 이동 위치 보정 (#about 링크 대응) */
+        [id] { scroll-margin-top: 96px; }
+
         .glass-header {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(16px);
@@ -91,6 +154,35 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* 공식 단체 정보 표 : 검수자가 바로 읽을 수 있도록 항상 표시 (언어 토글 영향 없음) */
+        .org-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.25rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .org-row:last-child { border-bottom: 0; }
+        @media (min-width: 768px) {
+            .org-row { grid-template-columns: 260px 1fr; gap: 1.5rem; align-items: start; }
+        }
+        .org-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #0284c7;
+            text-transform: none;
+        }
+        .org-value { font-size: 1rem; color: #0f172a; font-weight: 500; line-height: 1.6; }
+        .org-value .sub { display: block; font-size: 0.875rem; color: #64748b; font-weight: 400; margin-top: 0.15rem; }
+        .org-id {
+            font-family: 'Inter', monospace;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #0f172a;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-secondary selection:text-white relative overflow-x-hidden">
@@ -103,24 +195,25 @@
                 <span class="i18n" data-ko="한국청년미래협회" data-en="Korea Youth Future Association">한국청년미래협회</span>
             </a>
             
-            <ul class="hidden lg:flex items-center space-x-8">
+            <ul class="hidden lg:flex items-center space-x-7">
+                <!-- ▼ 검수자가 가장 먼저 클릭하는 메뉴 : 맨 앞에 배치 -->
+                <li><a href="#about" class="text-primary font-bold border-b-2 border-secondary hover:text-secondary-dark transition-colors i18n" data-ko="협회소개 (About Us)" data-en="About Us">About Us</a></li>
                 <li><a href="#program" class="text-slate-600 hover:text-secondary-dark font-medium transition-colors i18n" data-ko="프로그램" data-en="Programs">프로그램</a></li>
                 <li><a href="#education" class="text-slate-600 hover:text-secondary-dark font-medium transition-colors i18n" data-ko="교육" data-en="Education">교육</a></li>
-                <li><a href="#about" class="text-slate-600 hover:text-secondary-dark font-medium transition-colors i18n" data-ko="협회소개" data-en="About Us">협회소개</a></li>
-                <li><a href="#blog-activity" class="text-slate-600 hover:text-[#03c75a] font-medium transition-colors flex items-center gap-1"><span class="i18n" data-ko="활동/블로그" data-en="Blog & News">활동/블로그</span></a></li>
+                <li><a href="#blog-activity" class="text-slate-600 hover:text-[#03c75a] font-medium transition-colors flex items-center gap-1"><span class="i18n" data-ko="활동/블로그" data-en="Blog &amp; News">활동/블로그</span></a></li>
                 <li><a href="#partners" class="text-slate-600 hover:text-secondary-dark font-medium transition-colors i18n" data-ko="파트너" data-en="Partners">파트너</a></li>
             </ul>
 
             <div class="hidden lg:flex items-center space-x-4">
                 <!-- Language Toggle -->
-                <button onclick="toggleLanguage()" class="flex items-center justify-center w-16 h-8 bg-slate-200 rounded-full relative transition-colors duration-300 focus:outline-none shadow-inner" id="lang-btn">
+                <button onclick="toggleLanguage()" class="flex items-center justify-center w-16 h-8 bg-slate-200 rounded-full relative transition-colors duration-300 focus:outline-none shadow-inner" id="lang-btn" aria-label="Switch language">
                     <div class="absolute left-1 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center text-xs font-bold text-slate-700" id="lang-indicator">KR</div>
                 </button>
                 <a href="#contact" class="px-6 py-2.5 text-sm font-semibold text-white bg-primary rounded-full hover:bg-secondary-dark transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 i18n" data-ko="문의하기" data-en="Contact Us">문의하기</a>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="menu-toggle" class="lg:hidden text-primary z-50 focus:outline-none">
+            <button id="menu-toggle" class="lg:hidden text-primary z-50 focus:outline-none" aria-label="Open menu">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
         </nav>
@@ -129,10 +222,10 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden fixed inset-0 bg-white/95 backdrop-blur-md z-40 flex flex-col items-center justify-center transition-opacity">
         <ul class="flex flex-col items-center space-y-6">
+            <li><a href="#about" class="text-primary hover:text-secondary text-2xl font-black transition-colors mobile-link i18n" data-ko="협회소개 (About Us)" data-en="About Us">About Us</a></li>
             <li><a href="#program" class="text-primary hover:text-secondary text-2xl font-bold transition-colors mobile-link i18n" data-ko="프로그램" data-en="Programs">프로그램</a></li>
             <li><a href="#education" class="text-primary hover:text-secondary text-2xl font-bold transition-colors mobile-link i18n" data-ko="교육" data-en="Education">교육</a></li>
-            <li><a href="#about" class="text-primary hover:text-secondary text-2xl font-bold transition-colors mobile-link i18n" data-ko="협회소개" data-en="About Us">협회소개</a></li>
-            <li><a href="#blog-activity" class="text-primary hover:text-[#03c75a] text-2xl font-bold transition-colors mobile-link i18n" data-ko="활동/블로그" data-en="Blog & News">활동/블로그</a></li>
+            <li><a href="#blog-activity" class="text-primary hover:text-[#03c75a] text-2xl font-bold transition-colors mobile-link i18n" data-ko="활동/블로그" data-en="Blog &amp; News">활동/블로그</a></li>
             <li><a href="#partners" class="text-primary hover:text-secondary text-2xl font-bold transition-colors mobile-link i18n" data-ko="파트너" data-en="Partners">파트너</a></li>
         </ul>
         <div class="mt-10 flex flex-col items-center space-y-6">
@@ -164,11 +257,22 @@
                         <span class="block pb-2 text-transparent bg-clip-text bg-gradient-to-r from-secondary-dark via-accent to-purple-600 i18n" data-ko="함께 설계합니다" data-en="of Youth Together">함께 설계합니다</span>
                     </h1>
                     
-                    <p class="text-xl md:text-2xl font-medium text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0 animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <p class="text-xl md:text-2xl font-medium text-slate-600 mb-6 max-w-2xl mx-auto lg:mx-0 animate-fade-in-up" style="animation-delay: 0.3s;">
                         <span class="i18n" data-ko="AI 시대, 삶에서 출발해 기술로 연결되는 나만의 길" data-en="Your own path in the AI era, starting from life and connecting with technology.">AI 시대, 삶에서 출발해 기술로 연결되는 나만의 길</span>
                     </p>
+
+                    <!-- ============================================================
+                         단체 확인 배지 (히어로) : 언어와 무관하게 항상 표시
+                         ============================================================ -->
+                    <a href="#about" class="inline-flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-secondary hover:shadow-md transition-all animate-fade-in-up" style="animation-delay: 0.35s;">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Registered Non-Profit · 비영리단체
+                        </span>
+                        <span class="text-sm text-slate-600">Charity ID / 고유번호 : <strong class="text-primary tracking-wider">302-82-79641</strong></span>
+                    </a>
                     
-                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 mt-10 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 mt-8 animate-fade-in-up" style="animation-delay: 0.4s;">
                         <a href="#program" class="w-full sm:w-auto bg-primary text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-slate-800 hover:shadow-xl hover:shadow-primary/20 transform hover:-translate-y-1 transition-all duration-300 text-center">
                             <span class="i18n" data-ko="프로그램 알아보기" data-en="Explore Programs">프로그램 알아보기</span>
                         </a>
@@ -196,6 +300,140 @@
             </div>
         </section>
 
+        <!-- ============================================================
+             ABOUT SECTION (상단 메뉴 'About Us' 클릭 시 도착하는 위치)
+             * 맨 위에 '공식 단체 정보'를 배치하여 검수자가 1초 만에 확인 가능
+             * 이 블록은 언어 토글과 무관하게 한글/영문이 항상 함께 표시됩니다.
+             ============================================================ -->
+        <section id="about" class="py-24 bg-primary text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-30" style="background: radial-gradient(circle at 20% 20%, rgba(56,189,248,0.25), transparent 40%), radial-gradient(circle at 80% 30%, rgba(129,140,248,0.25), transparent 40%), radial-gradient(circle at 50% 90%, rgba(2,132,199,0.2), transparent 45%);"></div>
+            <div class="container mx-auto px-6 relative z-10">
+
+                <!-- ▼ 공식 단체 정보 카드 (검수용 핵심 블록) -->
+                <div id="organization-info" class="max-w-4xl mx-auto mb-20">
+                    <div id="org-info" class="bg-white text-slate-800 rounded-3xl shadow-2xl overflow-hidden">
+                        <div class="px-8 md:px-12 pt-10 pb-6 border-b border-slate-200">
+                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold tracking-wide mb-4">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                OFFICIAL ORGANIZATION INFORMATION · 공식 단체 정보
+                            </span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-primary leading-snug">
+                                Korea Youth Future Association<br>
+                                <span class="text-slate-500 text-xl md:text-2xl font-bold">한국청년미래협회</span>
+                            </h2>
+                            <p class="mt-4 text-slate-600 leading-relaxed">
+                                This website is the official website of Korea Youth Future Association, a non-profit organization registered in the Republic of Korea.
+                                <span class="block mt-1 text-slate-500 text-sm">본 웹사이트는 대한민국에 등록된 비영리단체 한국청년미래협회의 공식 홈페이지입니다.</span>
+                            </p>
+                        </div>
+
+                        <div class="px-8 md:px-12 py-6">
+                            <div class="org-row">
+                                <div class="org-label">Organization Name<br><span class="text-slate-400 font-semibold">단체명</span></div>
+                                <div class="org-value">
+                                    한국청년미래협회
+                                    <span class="sub">Korea Youth Future Association (KYFA)</span>
+                                </div>
+                            </div>
+
+                            <div class="org-row">
+                                <div class="org-label">Legal Status<br><span class="text-slate-400 font-semibold">법적 지위</span></div>
+                                <div class="org-value">
+                                    Non-Profit Organization (NPO), Republic of Korea
+                                    <span class="sub">대한민국 비영리단체 / 고유번호증 발급 단체 (국세청 National Tax Service)</span>
+                                </div>
+                            </div>
+
+                            <div class="org-row">
+                                <div class="org-label">Charity ID / Registration No.<br><span class="text-slate-400 font-semibold">고유번호 (등록번호)</span></div>
+                                <div class="org-value">
+                                    <span class="org-id">302-82-79641</span>
+                                    <span class="sub">Issued by the National Tax Service (NTS), Republic of Korea<br>대한민국 국세청 발급 고유번호</span>
+                                </div>
+                            </div>
+
+                            <div class="org-row">
+                                <div class="org-label">Representative<br><span class="text-slate-400 font-semibold">대표자 (협회장)</span></div>
+                                <div class="org-value">
+                                    김장길 (Jang-gil Kim)
+                                    <span class="sub">President / 협회장</span>
+                                </div>
+                            </div>
+
+                            <div class="org-row">
+                                <div class="org-label">Registered Address<br><span class="text-slate-400 font-semibold">주소</span></div>
+                                <div class="org-value">
+                                    614-A52, 43 Yeouiseo-ro, Yeongdeungpo-gu, Seoul, Republic of Korea
+                                    <span class="sub">서울특별시 영등포구 여의서로 43, 614-A52호</span>
+                                </div>
+                            </div>
+
+                            <div class="org-row">
+                                <div class="org-label">Email<br><span class="text-slate-400 font-semibold">이메일</span></div>
+                                <div class="org-value">
+                                    <a href="mailto:janggil.kim@nextyouthkorea.org" class="text-secondary-dark hover:underline break-all">janggil.kim@nextyouthkorea.org</a>
+                                    <span class="sub"><a href="mailto:nextyouthkorea@gmail.com" class="hover:underline break-all">nextyouthkorea@gmail.com</a></span>
+                                </div>
+                            </div>
+
+                            <div class="org-row">
+                                <div class="org-label">Phone<br><span class="text-slate-400 font-semibold">전화</span></div>
+                                <div class="org-value">
+                                    +82-502-1919-0921
+                                    <span class="sub">국내 : 0502-1919-0921</span>
+                                </div>
+                            </div>
+
+                            <div class="org-row">
+                                <div class="org-label">Official Website<br><span class="text-slate-400 font-semibold">공식 홈페이지</span></div>
+                                <div class="org-value">
+                                    <a href="https://nextyouthkorea.org" class="text-secondary-dark hover:underline">https://nextyouthkorea.org</a>
+                                    <span class="sub">The domain "nextyouthkorea.org" is owned and operated by Korea Youth Future Association.<br>본 도메인은 한국청년미래협회가 공식적으로 소유·운영합니다.</span>
+                                </div>
+                            </div>
+
+                            <div class="org-row">
+                                <div class="org-label">Purpose of Activity<br><span class="text-slate-400 font-semibold">주요 활동 목적</span></div>
+                                <div class="org-value">
+                                    Non-profit career and future-design education for young people: workshops, seminars, AI &amp; no-code training, and one-on-one mentoring. All programs are provided free of charge.
+                                    <span class="sub">청년 진로·미래설계 교육(워크숍, 세미나, AI·노코드 실습, 1:1 멘토링) 운영. 모든 프로그램 무료 제공</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-8 md:px-12 py-5 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                Direct link to this section / 이 섹션 직접 링크 :
+                                <a href="https://nextyouthkorea.org/#about" class="text-secondary-dark font-semibold hover:underline">https://nextyouthkorea.org/#about</a>
+                            </p>
+                            <a href="#contact" class="shrink-0 text-center px-5 py-2.5 rounded-full bg-primary text-white text-sm font-semibold hover:bg-secondary-dark transition-colors">
+                                Contact for verification · 확인 문의
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 협회 소개 -->
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 i18n" data-ko="우리는 청년의 미래를 위한 플랫폼입니다" data-en="We are a Platform for the Youth's Future">우리는 청년의 미래를 위한 플랫폼입니다</h2>
+                    <p class="max-w-3xl mx-auto text-slate-300 text-lg leading-relaxed i18n" data-ko="한국청년미래협회는 청년들이 자기 삶에서 출발해 진로와 미래를 스스로 설계하도록 돕는 비영리 단체입니다. 진로 탐색 워크숍, 창업·미래역량 세미나, AI·노코드 실습 교육, 1:1 멘토링을 운영하며, 청년들이 배운 것을 실제 프로젝트로 연결하도록 지원합니다." data-en="The Korea Youth Future Association is a non-profit organization that helps young people design their own careers and futures, starting from their own lives. We run career-exploration workshops, startup and future-skills seminars, hands-on AI and no-code education, and one-on-one mentoring, supporting youth in turning what they learn into real projects.">한국청년미래협회는 청년들이 자기 삶에서 출발해 진로와 미래를 스스로 설계하도록 돕는 비영리 단체입니다. 진로 탐색 워크숍, 창업·미래역량 세미나, AI·노코드 실습 교육, 1:1 멘토링을 운영하며, 청년들이 배운 것을 실제 프로젝트로 연결하도록 지원합니다.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="dark-glass-card p-12 rounded-3xl text-center reveal border border-white/20 hover:border-secondary/50 transition-colors">
+                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-secondary to-blue-500 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-secondary/30 text-2xl">🎯</div>
+                        <h3 class="text-2xl font-bold mb-4 tracking-widest text-secondary-light">MISSION</h3>
+                        <p class="text-xl md:text-2xl font-medium leading-relaxed i18n" data-ko="청년이 자신의 삶을 스스로 설계할 수 있는 힘을 기른다" data-en="Empower youth to design their own lives.">청년이 자신의 삶을 스스로 설계할 수 있는 힘을 기른다</p>
+                    </div>
+                     <div class="dark-glass-card p-12 rounded-3xl text-center reveal border border-white/20 hover:border-accent/50 transition-colors" style="transition-delay: 100ms;">
+                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-accent to-purple-500 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-accent/30 text-2xl">🚀</div>
+                        <h3 class="text-2xl font-bold mb-4 tracking-widest text-accent">VISION</h3>
+                        <p class="text-xl md:text-2xl font-medium leading-relaxed i18n" data-ko="모든 청년이 자기 주도적으로 미래를 만들어가는 사회" data-en="A society where all youth proactively create their future.">모든 청년이 자기 주도적으로 미래를 만들어가는 사회</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Blog & Activity Section -->
         <section id="blog-activity" class="py-24 bg-white relative overflow-hidden">
             <!-- Decorative bg -->
@@ -203,7 +441,7 @@
             <div class="container mx-auto px-6 relative z-10">
                 <div class="flex flex-col md:flex-row items-center justify-between mb-16 reveal gap-8">
                     <div class="md:w-1/2 text-center md:text-left">
-                        <span class="text-[#03c75a] font-bold tracking-wider uppercase text-sm mb-2 block i18n" data-ko="활동 & 소식" data-en="Activities & News">활동 & 소식</span>
+                        <span class="text-[#03c75a] font-bold tracking-wider uppercase text-sm mb-2 block i18n" data-ko="활동 &amp; 소식" data-en="Activities &amp; News">활동 &amp; 소식</span>
                         <h2 class="text-3xl md:text-5xl font-bold text-primary mb-6 i18n" data-ko="청년과 함께한 협회의 활동" data-en="What We've Done With Youth">청년과 함께한 협회의 활동</h2>
                         <p class="text-slate-500 text-lg i18n" data-ko="2025년부터 이어온 세미나, 상담회, 토크콘서트 등 청년과 함께한 현장을 소개합니다. 더 많은 소식은 네이버 블로그에서 확인하실 수 있습니다." data-en="Seminars, counseling sessions, and talk concerts we've held with youth since 2025. Find more updates on our Naver Blog.">2025년부터 이어온 세미나, 상담회, 토크콘서트 등 청년과 함께한 현장을 소개합니다. 더 많은 소식은 네이버 블로그에서 확인하실 수 있습니다.</p>
                     </div>
@@ -228,7 +466,7 @@
                     <div class="relative z-10 p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
                         <div>
                             <span class="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-xs font-bold tracking-widest mb-4">NOTICE</span>
-                            <h3 class="text-2xl md:text-3xl font-bold mb-3 i18n" data-ko="프로그램 · 세미나 참가자 상시 모집" data-en="Now Recruiting for Our Programs & Seminars">프로그램 · 세미나 참가자 상시 모집</h3>
+                            <h3 class="text-2xl md:text-3xl font-bold mb-3 i18n" data-ko="프로그램 · 세미나 참가자 상시 모집" data-en="Now Recruiting for Our Programs &amp; Seminars">프로그램 · 세미나 참가자 상시 모집</h3>
                             <p class="text-slate-200 leading-relaxed max-w-xl i18n" data-ko="미래설계 워크숍과 창업·진로 세미나 참여를 원하시면 언제든 문의해 주세요. 다음 행사 일정은 네이버 블로그에서 가장 빠르게 안내드립니다." data-en="If you'd like to join our future-design workshops or startup and career seminars, reach out anytime. The fastest updates on upcoming events are posted on our Naver Blog.">미래설계 워크숍과 창업·진로 세미나 참여를 원하시면 언제든 문의해 주세요. 다음 행사 일정은 네이버 블로그에서 가장 빠르게 안내드립니다.</p>
                         </div>
                         <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
@@ -244,16 +482,12 @@
                 <!-- ============================================================
                      EVENT CARDS (지난 행사 · 2025~2026)
                      * 사진 넣는 법: 각 카드의 <img ... src=""> 안에 이미지 주소를 붙여넣으세요.
-                       예) src="https://blog.naver.com/.../image.jpg"
-                       주소를 넣으면 사진이 자동으로 표시되고, 비어 있으면 안내 박스가 보입니다.
-                     * 2025년 행사의 정확한 날짜/제목은 실제 내용으로 자유롭게 수정하세요.
                      ============================================================ -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                     <!-- Event 1 : 토크콘서트 (2026.05.14) -->
                     <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal">
                         <div class="relative aspect-[4/3] overflow-hidden">
-                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
                             <img data-photo-slot="event-1" src="https://nextyouthkorea.org/images/event-1.jpg" alt="3인 3색, 인생설계 톡톡톡" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-100 text-slate-500">
                                 <span class="text-3xl mb-1">📷</span>
@@ -273,7 +507,6 @@
                     <!-- Event 2 : 취·창업 상담회 (2026.03.26) -->
                     <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 100ms;">
                         <div class="relative aspect-[4/3] overflow-hidden">
-                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
                             <img data-photo-slot="event-2" src="https://nextyouthkorea.org/images/event-2.jpg" alt="청년 취·창업 상담회" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-green-100 to-teal-100 text-slate-500">
                                 <span class="text-3xl mb-1">📷</span>
@@ -285,7 +518,7 @@
                                 <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full i18n" data-ko="상담회" data-en="Counseling">상담회</span>
                                 <span class="text-slate-400 text-xs i18n" data-ko="2026.03.26" data-en="March 26, 2026">2026.03.26</span>
                             </div>
-                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="청년 취·창업 상담회" data-en="Youth Employment & Startup Counseling">청년 취·창업 상담회</h4>
+                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="청년 취·창업 상담회" data-en="Youth Employment &amp; Startup Counseling">청년 취·창업 상담회</h4>
                             <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="청년을 대상으로 취업과 창업 진로를 1:1로 상담한 현장" data-en="One-on-one counseling for youth on employment and startup career paths.">청년을 대상으로 취업과 창업 진로를 1:1로 상담한 현장</p>
                         </div>
                     </div>
@@ -293,7 +526,6 @@
                     <!-- Event 3 : 특강/강의 (2025.12.16) -->
                     <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 200ms;">
                         <div class="relative aspect-[4/3] overflow-hidden">
-                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
                             <img data-photo-slot="event-3" src="https://nextyouthkorea.org/images/event-3.png" alt="미래역량·창업 특강" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-orange-100 to-amber-100 text-slate-500">
                                 <span class="text-3xl mb-1">📷</span>
@@ -305,7 +537,7 @@
                                 <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full i18n" data-ko="특강" data-en="Lecture">특강</span>
                                 <span class="text-slate-400 text-xs i18n" data-ko="2025.12.16" data-en="December 16, 2025">2025.12.16</span>
                             </div>
-                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="미래역량 · 창업 특강" data-en="Future Skills & Startup Lecture">미래역량 · 창업 특강</h4>
+                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="미래역량 · 창업 특강" data-en="Future Skills &amp; Startup Lecture">미래역량 · 창업 특강</h4>
                             <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="청년을 위한 미래 역량과 창업 실무를 다룬 강의" data-en="A lecture covering future competencies and practical startup skills for youth.">청년을 위한 미래 역량과 창업 실무를 다룬 강의</p>
                         </div>
                     </div>
@@ -313,7 +545,6 @@
                     <!-- Event 4 : 세미나 (2025.11.15) -->
                     <div class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 300ms;">
                         <div class="relative aspect-[4/3] overflow-hidden">
-                            <!-- ▼ 사진 추가: src="" 안에 이미지 주소 입력 -->
                             <img data-photo-slot="event-4" src="https://nextyouthkorea.org/images/event-4.jpg" alt="청년 창업·진로 세미나" class="photo-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <div class="photo-placeholder absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100 text-slate-500">
                                 <span class="text-3xl mb-1">📷</span>
@@ -325,7 +556,7 @@
                                 <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full i18n" data-ko="세미나" data-en="Seminar">세미나</span>
                                 <span class="text-slate-400 text-xs i18n" data-ko="2025.11.15" data-en="November 15, 2025">2025.11.15</span>
                             </div>
-                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="청년 창업 · 진로 세미나" data-en="Youth Startup & Career Seminar">청년 창업 · 진로 세미나</h4>
+                            <h4 class="text-lg font-bold text-primary mb-2 i18n" data-ko="청년 창업 · 진로 세미나" data-en="Youth Startup &amp; Career Seminar">청년 창업 · 진로 세미나</h4>
                             <p class="text-slate-500 text-sm leading-relaxed i18n" data-ko="창업과 진로 설계를 주제로 청년과 함께한 세미나" data-en="A seminar with youth on startup and career design.">창업과 진로 설계를 주제로 청년과 함께한 세미나</p>
                         </div>
                     </div>
@@ -420,7 +651,7 @@
                 </div>
                 
                 <div class="max-w-5xl mx-auto">
-                    <!-- Dynamic Abstract Graphic Banner (Replaced Photo) -->
+                    <!-- Dynamic Abstract Graphic Banner -->
                     <div class="w-full h-64 md:h-80 rounded-3xl overflow-hidden mb-12 reveal shadow-2xl relative bg-primary flex items-center justify-center">
                         
                         <!-- Dynamic Background Gradients -->
@@ -542,7 +773,7 @@
                         <div class="group glass-card p-8 rounded-3xl reveal hover:shadow-xl transition-all border border-slate-100 flex flex-col md:flex-row gap-8 items-start">
                             <div class="md:w-1/3 flex flex-col justify-center">
                                 <span class="inline-block px-4 py-1.5 bg-secondary/10 text-secondary-dark font-bold rounded-full text-sm mb-3 w-max i18n" data-ko="Week 4" data-en="Week 4">Week 4</span>
-                                <h4 class="text-2xl font-bold text-primary i18n" data-ko="연결과 지속의 시간" data-en="Time of Connection & Continuity">연결과 지속의 시간</h4>
+                                <h4 class="text-2xl font-bold text-primary i18n" data-ko="연결과 지속의 시간" data-en="Time of Connection &amp; Continuity">연결과 지속의 시간</h4>
                             </div>
                             <div class="md:w-2/3 grid sm:grid-cols-2 gap-4 w-full">
                                 <div class="bg-slate-50 p-6 rounded-2xl group-hover:bg-white transition-colors border border-slate-100">
@@ -577,7 +808,7 @@
                          <ul class="space-y-4 text-slate-600">
                             <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-secondary"></div><span class="i18n" data-ko="나를 이해하는 글쓰기 (월 2회)" data-en="Writing to Understand Myself (Bi-weekly)">나를 이해하는 글쓰기 (월 2회)</span></li>
                             <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-secondary"></div><span class="i18n" data-ko="디지털 리터러시 워크숍 (월 1회)" data-en="Digital Literacy Workshop (Monthly)">디지털 리터러시 워크숍 (월 1회)</span></li>
-                            <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-secondary"></div><span class="i18n" data-ko="AI 시대의 일과 삶 세미나 (분기별)" data-en="AI Era Work & Life Seminar (Quarterly)">AI 시대의 일과 삶 세미나 (분기별)</span></li>
+                            <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-secondary"></div><span class="i18n" data-ko="AI 시대의 일과 삶 세미나 (분기별)" data-en="AI Era Work &amp; Life Seminar (Quarterly)">AI 시대의 일과 삶 세미나 (분기별)</span></li>
                          </ul>
                     </div>
                     
@@ -604,30 +835,6 @@
                     </div>
                 </div>
              </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-24 bg-primary text-white relative overflow-hidden">
-            <div class="absolute inset-0 opacity-30" style="background: radial-gradient(circle at 20% 20%, rgba(56,189,248,0.25), transparent 40%), radial-gradient(circle at 80% 30%, rgba(129,140,248,0.25), transparent 40%), radial-gradient(circle at 50% 90%, rgba(2,132,199,0.2), transparent 45%);"></div>
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-6 i18n" data-ko="우리는 청년의 미래를 위한 플랫폼입니다" data-en="We are a Platform for the Youth's Future">우리는 청년의 미래를 위한 플랫폼입니다</h2>
-                    <p class="max-w-3xl mx-auto text-slate-300 text-lg leading-relaxed i18n" data-ko="한국청년미래협회는 청년들이 자기 삶에서 출발해 진로와 미래를 스스로 설계하도록 돕는 비영리 단체입니다. 진로 탐색 워크숍, 창업·미래역량 세미나, AI·노코드 실습 교육, 1:1 멘토링을 운영하며, 청년들이 배운 것을 실제 프로젝트로 연결하도록 지원합니다." data-en="The Korea Youth Future Association is a non-profit organization that helps young people design their own careers and futures, starting from their own lives. We run career-exploration workshops, startup and future-skills seminars, hands-on AI and no-code education, and one-on-one mentoring, supporting youth in turning what they learn into real projects.">한국청년미래협회는 청년들이 자기 삶에서 출발해 진로와 미래를 스스로 설계하도록 돕는 비영리 단체입니다. 진로 탐색 워크숍, 창업·미래역량 세미나, AI·노코드 실습 교육, 1:1 멘토링을 운영하며, 청년들이 배운 것을 실제 프로젝트로 연결하도록 지원합니다.</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    <div class="dark-glass-card p-12 rounded-3xl text-center reveal border border-white/20 hover:border-secondary/50 transition-colors">
-                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-secondary to-blue-500 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-secondary/30 text-2xl">🎯</div>
-                        <h3 class="text-2xl font-bold mb-4 tracking-widest text-secondary-light">MISSION</h3>
-                        <p class="text-xl md:text-2xl font-medium leading-relaxed i18n" data-ko="청년이 자신의 삶을 스스로 설계할 수 있는 힘을 기른다" data-en="Empower youth to design their own lives.">청년이 자신의 삶을 스스로 설계할 수 있는 힘을 기른다</p>
-                    </div>
-                     <div class="dark-glass-card p-12 rounded-3xl text-center reveal border border-white/20 hover:border-accent/50 transition-colors" style="transition-delay: 100ms;">
-                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-accent to-purple-500 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-accent/30 text-2xl">🚀</div>
-                        <h3 class="text-2xl font-bold mb-4 tracking-widest text-accent">VISION</h3>
-                        <p class="text-xl md:text-2xl font-medium leading-relaxed i18n" data-ko="모든 청년이 자기 주도적으로 미래를 만들어가는 사회" data-en="A society where all youth proactively create their future.">모든 청년이 자기 주도적으로 미래를 만들어가는 사회</p>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section id="partners" class="py-24 bg-slate-50">
@@ -680,7 +887,8 @@
                 <div>
                     <h4 class="font-bold text-white text-lg mb-6 i18n" data-ko="협회 정보" data-en="About Us">협회 정보</h4>
                     <ul class="space-y-3">
-                        <li><a href="#about" class="hover:text-secondary-light transition-colors i18n" data-ko="미션 & 비전" data-en="Mission & Vision">미션 & 비전</a></li>
+                        <li><a href="#about" class="hover:text-secondary-light transition-colors font-semibold text-white">Organization Info · 단체 정보</a></li>
+                        <li><a href="#about" class="hover:text-secondary-light transition-colors i18n" data-ko="미션 &amp; 비전" data-en="Mission &amp; Vision">미션 &amp; 비전</a></li>
                         <li><a href="#partners" class="hover:text-secondary-light transition-colors i18n" data-ko="파트너" data-en="Partners">파트너</a></li>
                         <li><a href="#contact" class="hover:text-secondary-light transition-colors i18n" data-ko="문의하기" data-en="Contact">문의하기</a></li>
                     </ul>
@@ -697,17 +905,24 @@
             </div>
             
             <div class="border-t border-slate-800 pt-10 mt-4">
+                <!-- ============================================================
+                     푸터 법적 정보 : 언어 토글과 무관하게 한글/영문 항상 표시
+                     ============================================================ -->
                 <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                     <div class="text-center md:text-left text-sm space-y-2 text-slate-500">
-                        <p class="font-bold text-white tracking-wide i18n" data-ko="한국청년미래협회 (Korea Youth Future Association)" data-en="Korea Youth Future Association (한국청년미래협회)">한국청년미래협회 (Korea Youth Future Association)</p>
-                        <p><span class="i18n" data-ko="대표(협회장) : 김장길" data-en="President : Jang-gil Kim">대표(협회장) : 김장길</span></p>
-                        <p><span class="i18n" data-ko="고유번호(Charity ID)" data-en="Charity ID (고유번호)">고유번호(Charity ID)</span> : <span class="text-slate-300 font-medium">302-82-79641</span></p>
-                        <p><span class="i18n" data-ko="주소 : 서울특별시 영등포구 여의서로 43, 614-A52호" data-en="Address: 614-A52, 43 Yeouiseo-ro, Yeongdeungpo-gu, Seoul, Korea">주소 : 서울특별시 영등포구 여의서로 43, 614-A52호</span></p>
-                        <p>이메일 : janggil.kim@nextyouthkorea.org / nextyouthkorea@gmail.com | <span class="i18n" data-ko="전화 : 0502-1919-0921" data-en="Tel : +82-502-1919-0921">전화 : 0502-1919-0921</span></p>
+                        <p class="font-bold text-white tracking-wide">Korea Youth Future Association (한국청년미래협회)</p>
+                        <p>Legal Status / 법적 지위 : <span class="text-slate-300">Registered Non-Profit Organization in the Republic of Korea (대한민국 비영리단체)</span></p>
+                        <p>Charity ID / 고유번호 : <span class="text-slate-300 font-medium tracking-wider">302-82-79641</span> <span class="text-slate-500">(issued by the National Tax Service, Korea)</span></p>
+                        <p>Representative / 대표(협회장) : <span class="text-slate-300">김장길 (Jang-gil Kim)</span></p>
+                        <p>Address : <span class="text-slate-300">614-A52, 43 Yeouiseo-ro, Yeongdeungpo-gu, Seoul, Republic of Korea</span></p>
+                        <p>주소 : <span class="text-slate-300">서울특별시 영등포구 여의서로 43, 614-A52호</span></p>
+                        <p>Email : <a href="mailto:janggil.kim@nextyouthkorea.org" class="text-slate-300 hover:text-white break-all">janggil.kim@nextyouthkorea.org</a> / <a href="mailto:nextyouthkorea@gmail.com" class="text-slate-300 hover:text-white break-all">nextyouthkorea@gmail.com</a></p>
+                        <p>Phone / 전화 : <span class="text-slate-300">+82-502-1919-0921 (0502-1919-0921)</span></p>
                     </div>
                     <div class="text-center md:text-right text-sm">
                         <p class="mb-4">&copy; 2026 Korea Youth Future Association. All rights reserved.</p>
                         <div class="space-x-4">
+                             <a href="#about" class="hover:text-white transition-colors">Organization Info</a>
                              <a href="#" class="hover:text-white transition-colors i18n" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
                              <a href="#" class="hover:text-white transition-colors i18n" data-ko="이용약관" data-en="Terms of Service">이용약관</a>
                         </div>
@@ -716,7 +931,10 @@
 
                 <!-- Official Domain Notice -->
                 <div class="mt-10 pt-6 border-t border-slate-800 text-center">
-                    <p class="text-xs md:text-sm text-white font-light leading-relaxed max-w-3xl mx-auto i18n" data-ko="&quot;nextyouthkorea.org&quot; 도메인은 한국청년미래협회가 공식적으로 소유·운영합니다." data-en="The domain &quot;nextyouthkorea.org&quot; is officially owned and operated by the Korea Youth Future Association.">nextyouthkorea.org 도메인은 한국청년미래협회가 공식적으로 소유·운영합니다.</p>
+                    <p class="text-xs md:text-sm text-white font-light leading-relaxed max-w-3xl mx-auto">
+                        The domain "nextyouthkorea.org" is officially owned and operated by the Korea Youth Future Association.
+                        <span class="block text-slate-400 mt-1">nextyouthkorea.org 도메인은 한국청년미래협회가 공식적으로 소유·운영합니다.</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -725,6 +943,7 @@
     <script>
         // === Language Logic ===
         // 기본 언어: 영어 (URL에 ?lang=ko 를 붙이면 한국어, ?lang=en 이면 영어로 열림)
+        // ※ 공식 단체 정보(#about 상단 카드)와 푸터 법적 정보는 언어 토글과 무관하게 항상 한글/영문 병기됩니다.
         const SUPPORTED_LANGS = ['ko', 'en'];
         const DEFAULT_LANG = 'en';
         let currentLang = DEFAULT_LANG;
@@ -838,8 +1057,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        // Optional: stop observing once revealed
-                        // observer.unobserve(entry.target);
                     }
                 });
             }, {

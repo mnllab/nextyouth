@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <title>On-Device AI Receipt Scanner</title>
+
+  <!-- Optional UI dependencies. OCR inference never sends receipt data to these CDNs. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+
+  <style>
+    :root {
+      --bg: #0F172A;
+      --panel: #1E293B;
+      --panel-2: #111827;
+      --line: rgba(148,163,184,.18);
+      --text: #E5E7EB;
+      --muted: #94A3B8;
+      --violet: #8B5CF6;
+      --emerald: #10B981;
+      --danger: #F87171;
+      --shadow-violet: 0 0 28px rgba(139,92,246,.16);
+      --shadow-emerald: 0 0 24px rgba(16,185,129,.12);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); font-family: Pretendard, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body {
+      background:
+        radial-gradient(circle at 15% 0%, rgba(139,92,246,.12), transparent 32rem),
+        radial-gradient(circle at 100% 100%, rgba(16,185,129,.08), transparent 34rem),
+        var(--bg);
+    }
+    button, input, textarea { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    .app-shell { max-width: 1540px; margin: 0 auto; padding: 22px; }
+    .topbar { display:flex; gap:16px; align-items:center; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; }
+    .brand { display:flex; align-items:center; gap:13px; }
+    .brand-mark { width:46px; height:46px; border-radius:14px; display:grid; place-items:center; border:1px solid rgba(139,92,246,.45); background:linear-gradient(145deg,rgba(139,92,246,.22),rgba(16,185,129,.08)); box-shadow:var(--shadow-violet); font-size:23px; }
+    .brand h1 { margin:0; font-size:clamp(20px,3vw,28px); letter-spacing:-.03em; }
+    .brand p { margin:4px 0 0; color:var(--muted); font-size:13px; }
+    .privacy-badge { display:flex; align-items:center; gap:8px; border:1px solid rgba(16,185,129,.35); color:#A7F3D0; background:rgba(16,185,129,.08); padding:9px 12px; border-radius:999px; font-size:12px; box-shadow:var(--shadow-emerald); }
+    .dot { width:8px; height:8px; border-radius:50%; background:var(--emerald); box-shadow:0 0 14px rgba(16,185,129,.9); }
+    .layout { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr); gap:18px; align-items:start; }
+    .card { background:linear-gradient(180deg,rgba(30,41,59,.96),rgba(23,33,49,.96)); border:1px solid var(--line); border-radius:20px; box-shadow:0 16px 60px rgba(2,6,23,.28); overflow:hidden; }
+    .card-head { padding:16px 18px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .card-title { margin:0; font-size:14px; font-weight:800; letter-spacing:-.02em; }
+    .subtle { font-size:11px; color:var(--muted); }
+    .upload-zone { margin:16px; border:1px dashed rgba(139,92,246,.55); border-radius:16px; min-height:118px; display:flex; align-items:center; justify-content:center; text-align:center; padding:18px; background:rgba(15,23,42,.38); transition:.18s ease; cursor:pointer; }
+    .upload-zone:hover, .upload-zone.dragging { border-color:var(--emerald); background:rgba(16,185,129,.06); box-shadow:inset 0 0 30px rgba(16,185,129,.05); }
+    .upload-zone strong { display:block; margin-bottom:6px; font-size:14px; }
+    .upload-zone span { color:var(--muted); font-size:12px; line-height:1.6; }
+    .canvas-wrap { margin:0 16px 16px; background:#020617; border:1px solid var(--line); border-radius:16px; min-height:450px; max-height:67vh; display:flex; align-items:center; justify-content:center; overflow:auto; position:relative; }
+    #viewer { display:block; max-width:100%; height:auto; background:white; }
+    .empty-canvas { color:#64748B; text-align:center; padding:40px 20px; position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; }
+    .empty-canvas > div { max-width:300px; }
+    .toolbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .chip-btn { border:1px solid var(--line); background:rgba(15,23,42,.62); color:#CBD5E1; border-radius:10px; padding:7px 10px; font-size:11px; cursor:pointer; }
+    .chip-btn.active { border-color:rgba(139,92,246,.55); color:#DDD6FE; background:rgba(139,92,246,.12); }
+    .status-panel { padding:16px 18px; border-bottom:1px solid var(--line); }
+    .status-row { display:flex; align-items:flex-start; gap:12px; }
+    .status-icon { width:38px; height:38px; flex:0 0 38px; display:grid; place-items:center; border-radius:12px; border:1px solid rgba(139,92,246,.35); background:rgba(139,92,246,.09); }
+    .status-main { flex:1; min-width:0; }
+    #modelStatus { margin:0 0 4px; font-size:13px; font-weight:750; }
+    #modelDetail { color:var(--muted); font-size:11px; min-height:17px; word-break:break-word; }
+    .progress-track { height:8px; width:100%; background:rgba(15,23,42,.9); border:1px solid rgba(148,163,184,.12); border-radius:999px; overflow:hidden; margin-top:11px; }
+    .progress-fill { height:100%; width:0%; background:linear-gradient(90deg,var(--violet),var(--emerald)); box-shadow:0 0 22px rgba(139,92,246,.45); transition:width .18s ease; }
+    .model-meta { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:11px; }
+    .meta-box { border:1px solid var(--line); border-radius:10px; padding:8px 9px; background:rgba(15,23,42,.38); }
+    .meta-box b { display:block; font-size:11px; margin-bottom:2px; color:#E2E8F0; }
+    .meta-box span { color:var(--muted); font-size:10px; }
+    .editor-wrap { padding:16px 18px; }
+    .editor-label { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:9px; }
+    .editor-label strong { font-size:12px; }
+    .editor-label span { font-size:10px; color:var(--muted); }
+    #resultEditor { width:100%; min-height:330px; resize:vertical; border-radius:14px; border:1px solid var(--line); outline:none; background:#0B1120; color:#E5E7EB; padding:14px; line-height:1.65; font-family:Pretendard, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12.5px; transition:border-color .18s ease, box-shadow .18s ease; }
+    #resultEditor:focus { border-color:rgba(139,92,246,.58); box-shadow:0 0 0 3px rgba(139,92,246,.08); }
+    .action-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+    .btn { border:0; border-radius:13px; padding:12px 14px; font-weight:800; cursor:pointer; transition:.18s ease; min-height:45px; }
+    .btn:disabled { opacity:.42; cursor:not-allowed; filter:grayscale(.4); }
+    .btn-primary { color:white; background:linear-gradient(135deg,#7C3AED,#8B5CF6); box-shadow:0 12px 30px rgba(139,92,246,.22); }
+    .btn-primary:hover:not(:disabled) { transform:translateY(-1px); }
+    .btn-secondary { color:#D1FAE5; border:1px solid rgba(16,185,129,.35); background:rgba(16,185,129,.10); }
+    .mini-actions { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+    .mini-actions button { border:1px solid var(--line); background:rgba(15,23,42,.6); color:#CBD5E1; border-radius:10px; padding:8px 10px; font-size:11px; cursor:pointer; }
+    .parse-panel { margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .parse-box { border:1px solid var(--line); background:rgba(15,23,42,.45); border-radius:12px; padding:10px; min-height:64px; }
+    .parse-box b { display:block; color:#CBD5E1; font-size:10px; margin-bottom:6px; }
+    .parse-box div { font-size:11px; color:#A7F3D0; white-space:pre-wrap; word-break:break-word; }
+    .notice { margin:0 18px 18px; padding:11px 12px; border-radius:12px; background:rgba(2,6,23,.35); border:1px solid var(--line); color:#94A3B8; font-size:10.5px; line-height:1.55; }
+    .toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#020617; border:1px solid rgba(148,163,184,.25); color:#E2E8F0; padding:10px 13px; border-radius:10px; font-size:12px; transition:.2s ease; z-index:50; box-shadow:0 12px 40px rgba(0,0,0,.35); }
+    .toast.show { opacity:1; transform:translate(-50%,0); }
+    .line-overlay { position:absolute; inset:0; pointer-events:none; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns:1fr; }
+      .canvas-wrap { min-height:360px; max-height:58vh; }
+    }
+    @media (max-width: 560px) {
+      .app-shell { padding:12px; }
+      .model-meta, .parse-panel, .action-grid { grid-template-columns:1fr; }
+      .privacy-badge { width:100%; justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">◈</div>
+        <div>
+          <h1>On-Device AI Receipt Scanner</h1>
+          <p>한국어 영수증 · 브라우저 로컬 ONNX 추론 · 서버 업로드 없음</p>
+        </div>
+      </div>
+      <div class="privacy-badge"><span class="dot"></span>PRIVATE MODE · RECEIPT DATA STAYS LOCAL</div>
+    </header>
+
+    <section class="layout">
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title">01 · 영수증 이미지 입력 / Canvas Viewer</h2>
+            <div class="subtle">Drag & Drop · 파일 선택 · 클립보드 이미지 붙여넣기(Ctrl/Cmd+V)</div>
+          </div>
+          <div class="toolbar">
+            <button id="viewOriginalBtn" class="chip-btn active" type="button">원본</button>
+            <button id="viewProcessedBtn" class="chip-btn" type="button">전처리</button>
+          </div>
+        </div>
+
+        <label id="uploadZone" class="upload-zone" for="fileInput">
+          <input id="fileInput" class="sr-only" type="file" accept="image/*" />
+          <div>
+            <strong>영수증 이미지를 놓거나 클릭해 선택</strong>
+            <span>PNG / JPG / WEBP · 붙여넣기 지원<br/>이미지는 브라우저 메모리와 Canvas 안에서만 처리됩니다.</span>
+          </div>
+        </label>
+
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="viewer"></canvas>
+          <div id="emptyCanvas" class="empty-canvas">
+            <div>
+              <div style="font-size:34px;margin-bottom:10px">▧</div>
+              <strong style="display:block;color:#94A3B8;margin-bottom:6px">Canvas 대기 중</strong>
+              <span style="font-size:11px">이미지를 불러오면 Otsu 이진화와 대비 정규화를 적용합니다.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="notice">
+          보안 원칙: 애플리케이션 코드에는 영수증 이미지·OCR 텍스트를 외부로 전송하는 fetch/XHR/WebSocket 로직이 없습니다. 최초 실행 시 고정된 ONNX Runtime/모델 파일만 다운로드하며 이후 핵심 추론 자산은 IndexedDB를 우선 사용합니다.
+        </div>
+      </article>
+
+      <aside class="card">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title">02 · Local AI Runtime / OCR Result</h2>
+            <div class="subtle">PP-OCRv5 Korean Recognition · WebGPU → WASM fallback</div>
+          </div>
+          <button id="clearCacheBtn" class="chip-btn" type="button">AI 캐시 초기화</button>
+        </div>
+
+        <section class="status-panel">
+          <div class="status-row">
+            <div class="status-icon" id="statusIcon">AI</div>
+            <div class="status-main">
+              <p id="modelStatus">로컬 AI 초기화 준비 중...</p>
+              <div id="modelDetail">브라우저 기능과 캐시 상태를 확인합니다.</div>
+              <div class="progress-track"><div id="modelProgress" class="progress-fill"></div></div>
+            </div>
+          </div>
+          <div class="model-meta">
+            <div class="meta-box"><b>Execution</b><span id="executionMeta">Detecting...</span></div>
+            <div class="meta-box"><b>OCR Model</b><span>PP-OCRv5 · KO/EN</span></div>
+            <div class="meta-box"><b>Cache</b><span id="cacheMeta">IndexedDB</span></div>
+          </div>
+        </section>
+
+        <section class="editor-wrap">
+          <div class="editor-label">
+            <strong>Raw / Edited Text</strong>
+            <span id="inferMeta">AI 준비 전</span>
+          </div>
+          <textarea id="resultEditor" spellcheck="false" placeholder="OCR 결과가 이곳에 표시됩니다. 직접 수정할 수도 있습니다."></textarea>
+
+          <div class="action-grid">
+            <button id="scanBtn" class="btn btn-primary" type="button" disabled>🤖 로컬 AI로 판독 시작</button>
+            <button id="smartBtn" class="btn btn-secondary" type="button" disabled>🧹 영수증 스마트 정리</button>
+          </div>
+
+          <div class="mini-actions">
+            <button id="copyBtn" type="button">결과 복사</button>
+            <button id="clearTextBtn" type="button">텍스트 지우기</button>
+            <button id="reprocessBtn" type="button">전처리 다시 적용</button>
+          </div>
+
+          <div class="parse-panel">
+            <div class="parse-box"><b>감지 날짜</b><div id="dateSummary">-</div></div>
+            <div class="parse-box"><b>감지 금액</b><div id="amountSummary">-</div></div>
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+<script>
+(() => {
+  'use strict';
+
+  const ORT_VERSION = '1.29.0';
+  const ORT_BASE = `https://cdn.jsdelivr.net/npm/onnxruntime-web@${ORT_VERSION}/dist/`;
+  const MODEL_URL = 'https://huggingface.co/monkt/paddleocr-onnx/resolve/main/languages/korean/rec.onnx';
+  const DICT_URL = 'https://huggingface.co/monkt/paddleocr-onnx/resolve/main/languages/korean/dict.txt';
+  const DB_NAME = 'on-device-receipt-ai';
+  const DB_VERSION = 1;
+  const STORE_NAME = 'assets';
+  const MAX_IMAGE_SIDE = 1800;
+
+  const els = {
+    fileInput: document.getElementById('fileInput'),
+    uploadZone: document.getElementById('uploadZone'),
+    viewer: document.getElementById('viewer'),
+    emptyCanvas: document.getElementById('emptyCanvas'),
+    viewOriginalBtn: document.getElementById('viewOriginalBtn'),
+    viewProcessedBtn: document.getElementById('viewProcessedBtn'),
+    modelStatus: document.getElementById('modelStatus'),
+    modelDetail: document.getElementById('modelDetail'),
+    modelProgress: document.getElementById('modelProgress'),
+    executionMeta: document.getElementById('executionMeta'),
+    cacheMeta: document.getElementById('cacheMeta'),
+    inferMeta: document.getElementById('inferMeta'),
+    resultEditor: document.getElementById('resultEditor'),
+    scanBtn: document.getElementById('scanBtn'),
+    smartBtn: document.getElementById('smartBtn'),
+    copyBtn: document.getElementById('copyBtn'),
+    clearTextBtn: document.getElementById('clearTextBtn'),
+    reprocessBtn: document.getElementById('reprocessBtn'),
+    clearCacheBtn: document.getElementById('clearCacheBtn'),
+    dateSummary: document.getElementById('dateSummary'),
+    amountSummary: document.getElementById('amountSummary'),
+    statusIcon: document.getElementById('statusIcon'),
+    toast: document.getElementById('toast')
+  };
+
+  const viewerCtx = els.viewer.getContext('2d', { willReadFrequently: true });
+  const sourceCanvas = document.createElement('canvas');
+  const sourceCtx = sourceCanvas.getContext('2d', { willReadFrequently: true });
+  const processedCanvas = document.createElement('canvas');
+  const processedCtx = processedCanvas.getContext('2d', { willReadFrequently: true });
+
+  let imageLoaded = false;
+  let modelReady = false;
+  let worker = null;
+  let currentView = 'original';
+  let currentSegments = [];
+  let workerObjectUrls = [];
+  let currentBackend = 'WASM';
+  let initInProgress = false;
+
+  function toast(message) {
+    els.toast.textContent = message;
+    els.toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => els.toast.classList.remove('show'), 1800);
+  }
+
+  function setProgress(percent, status, detail = '') {
+    const p = Math.max(0, Math.min(100, Math.round(percent)));
+    els.modelProgress.style.width = `${p}%`;
+    if (status) els.modelStatus.textContent = status;
+    if (detail !== undefined) els.modelDetail.textContent = detail;
+  }
+
+  function updateButtons() {
+    els.scanBtn.disabled = !(imageLoaded && modelReady);
+    els.smartBtn.disabled = !els.resultEditor.value.trim();
+  }
+
+  function openDb() {
+    return new Promise((resolve, reject) => {
+      if (!('indexedDB' in window)) return reject(new Error('IndexedDB를 지원하지 않는 브라우저입니다.'));
+      const req = indexedDB.open(DB_NAME, DB_VERSION);
+      req.onupgradeneeded = () => {
+        const db = req.result;
+        if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME, { keyPath: 'key' });
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async function idbGet(key) {
+    const db = await openDb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readonly');
+      const req = tx.objectStore(STORE_NAME).get(key);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => reject(req.error);
+      tx.oncomplete = () => db.close();
+    });
+  }
+
+  async function idbPut(key, bytes) {
+    const db = await openDb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      tx.objectStore(STORE_NAME).put({ key, bytes, savedAt: Date.now() });
+      tx.oncomplete = () => { db.close(); resolve(); };
+      tx.onerror = () => { db.close(); reject(tx.error); };
+    });
+  }
+
+  async function clearDb() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.deleteDatabase(DB_NAME);
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+      req.onblocked = () => reject(new Error('다른 탭에서 데이터베이스를 사용 중입니다.'));
+    });
+  }
+
+  async function fetchAsset(url, cacheKey, onProgress) {
+    try {
+      const cached = await idbGet(cacheKey);
+      if (cached?.bytes) {
+        onProgress?.(1, true, cached.bytes.byteLength || cached.bytes.length || 0);
+        return cached.bytes;
+      }
+    } catch (e) {
+      console.warn('IndexedDB read failed:', e);
+    }
+
+    if (!navigator.onLine) throw new Error(`오프라인 상태이며 캐시에 없는 자산입니다: ${cacheKey}`);
+
+    const response = await fetch(url, { mode: 'cors', credentials: 'omit', cache: 'no-cache' });
+    if (!response.ok) throw new Error(`${cacheKey} 다운로드 실패 (${response.status})`);
+
+    const total = Number(response.headers.get('content-length')) || 0;
+    if (!response.body) {
+      const buffer = await response.arrayBuffer();
+      try { await idbPut(cacheKey, buffer); } catch (e) { console.warn('IndexedDB write failed:', e); }
+      onProgress?.(1, false, buffer.byteLength);
+      return buffer;
+    }
+
+    const reader = response.body.getReader();
+    const chunks = [];
+    let received = 0;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      received += value.byteLength;
+      onProgress?.(total ? received / total : 0.35, false, received);
+    }
+
+    const merged = new Uint8Array(received);
+    let offset = 0;
+    for (const chunk of chunks) { merged.set(chunk, offset); offset += chunk.byteLength; }
+    const buffer = merged.buffer;
+    try { await idbPut(cacheKey, buffer); } catch (e) { console.warn('IndexedDB write failed:', e); }
+    onProgress?.(1, false, received);
+    return buffer;
+  }
+
+  function formatBytes(bytes) {
+    if (!Number.isFinite(bytes) || bytes <= 0) return '';
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+  }
+
+  async function storageInfo() {
+    try {
+      const est = await navigator.storage?.estimate?.();
+      if (!est) return;
+      els.cacheMeta.textContent = `${formatBytes(est.usage || 0)} used`;
+    } catch (_) {}
+  }
+
+  function makeBlobUrl(bytes, type) {
+    const url = URL.createObjectURL(new Blob([bytes], { type }));
+    workerObjectUrls.push(url);
+    return url;
+  }
+
+  function workerMain() {
+    'use strict';
+    let ort = null;
+    let session = null;
+    let dictionary = [];
+    let actualBackend = 'WASM';
+
+    self.onmessage = async (event) => {
+      const msg = event.data;
+      try {
+        if (msg.type === 'init') await init(msg);
+        if (msg.type === 'infer') await infer(msg.lines);
+      } catch (error) {
+        self.postMessage({ type: 'error', message: error?.message || String(error), stack: error?.stack || '' });
+      }
+    };
+
+    async function init(msg) {
+      self.postMessage({ type: 'status', message: 'ONNX Runtime 모듈을 Worker에 연결 중...' });
+      const imported = await import(msg.ortBundleUrl);
+      ort = imported.default?.InferenceSession ? imported.default : imported;
+
+      ort.env.logLevel = 'warning';
+      ort.env.wasm.proxy = false;
+      ort.env.wasm.simd = true;
+      ort.env.wasm.numThreads = self.crossOriginIsolated ? Math.min(4, self.navigator?.hardwareConcurrency || 2) : 1;
+      ort.env.wasm.wasmPaths = { mjs: msg.ortRuntimeMjsUrl, wasm: msg.ortWasmUrl };
+
+      dictionary = msg.dictText.replace(/\r/g, '').split('\n');
+      if (dictionary[dictionary.length - 1] === '') dictionary.pop();
+
+      const modelBytes = new Uint8Array(msg.modelBuffer);
+      self.postMessage({ type: 'status', message: 'OCR 신경망 그래프를 최적화하고 있습니다...' });
+
+      const baseOptions = { graphOptimizationLevel: 'all', enableCpuMemArena: true, enableMemPattern: true };
+      if (msg.preferWebGPU) {
+        try {
+          session = await ort.InferenceSession.create(modelBytes, { ...baseOptions, executionProviders: ['webgpu'] });
+          actualBackend = 'WebGPU';
+        } catch (gpuError) {
+          self.postMessage({ type: 'status', message: 'WebGPU 초기화 실패 · WASM SIMD로 전환합니다.' });
+          session = await ort.InferenceSession.create(modelBytes, { ...baseOptions, executionProviders: ['wasm'] });
+          actualBackend = 'WASM SIMD';
+        }
+      } else {
+        session = await ort.InferenceSession.create(modelBytes, { ...baseOptions, executionProviders: ['wasm'] });
+        actualBackend = 'WASM SIMD';
+      }
+
+      self.postMessage({
+        type: 'ready',
+        backend: actualBackend,
+        input: session.inputNames?.[0] || 'input',
+        output: session.outputNames?.[0] || 'output'
+      });
+    }
+
+    function resizeToTensor(line) {
+      const src = new Uint8ClampedArray(line.data);
+      const srcW = line.width;
+      const srcH = line.height;
+      const dstH = 32;
+      let dstW = Math.round(dstH * (srcW / Math.max(1, srcH)));
+      dstW = Math.max(32, Math.min(960, Math.ceil(dstW / 4) * 4));
+
+      const plane = dstH * dstW;
+      const tensor = new Float32Array(plane * 3);
+
+      for (let y = 0; y < dstH; y++) {
+        const sy = Math.min(srcH - 1, Math.max(0, ((y + 0.5) * srcH / dstH) - 0.5));
+        const y0 = Math.floor(sy), y1 = Math.min(srcH - 1, y0 + 1), wy = sy - y0;
+        for (let x = 0; x < dstW; x++) {
+          const sx = Math.min(srcW - 1, Math.max(0, ((x + 0.5) * srcW / dstW) - 0.5));
+          const x0 = Math.floor(sx), x1 = Math.min(srcW - 1, x0 + 1), wx = sx - x0;
+
+          const i00 = (y0 * srcW + x0) * 4;
+          const i10 = (y0 * srcW + x1) * 4;
+          const i01 = (y1 * srcW + x0) * 4;
+          const i11 = (y1 * srcW + x1) * 4;
+
+          const v00 = src[i00];
+          const v10 = src[i10];
+          const v01 = src[i01];
+          const v11 = src[i11];
+          const top = v00 + (v10 - v00) * wx;
+          const bottom = v01 + (v11 - v01) * wx;
+          const gray = top + (bottom - top) * wy;
+          const normalized = gray / 127.5 - 1.0;
+          const idx = y * dstW + x;
+          tensor[idx] = normalized;
+          tensor[plane + idx] = normalized;
+          tensor[plane * 2 + idx] = normalized;
+        }
+      }
+      return { tensor, width: dstW, height: dstH };
+    }
+
+    function decodeCTC(output) {
+      const dims = output.dims;
+      if (!dims || dims.length < 3) throw new Error(`예상하지 못한 OCR 출력 차원: ${JSON.stringify(dims)}`);
+      const T = dims[dims.length - 2];
+      const C = dims[dims.length - 1];
+      const data = output.data;
+      const chars = [''];
+      for (const ch of dictionary) chars.push(ch);
+      while (chars.length < C) chars.push(' ');
+
+      let prev = -1;
+      let text = '';
+      let confidenceSum = 0;
+      let confidenceCount = 0;
+
+      for (let t = 0; t < T; t++) {
+        const offset = t * C;
+        let maxIndex = 0;
+        let maxValue = -Infinity;
+        for (let c = 0; c < C; c++) {
+          const v = data[offset + c];
+          if (v > maxValue) { maxValue = v; maxIndex = c; }
+        }
+        if (maxIndex !== 0 && maxIndex !== prev) {
+          text += chars[maxIndex] ?? '';
+          confidenceSum += Number(maxValue) || 0;
+          confidenceCount++;
+        }
+        prev = maxIndex;
+      }
+
+      return {
+        text: text.replace(/\s+/g, ' ').trim(),
+        confidence: confidenceCount ? confidenceSum / confidenceCount : 0
+      };
+    }
+
+    async function infer(lines) {
+      if (!session) throw new Error('OCR 세션이 아직 준비되지 않았습니다.');
+      const started = performance.now();
+      const results = [];
+      const inputName = session.inputNames[0];
+      const outputName = session.outputNames[0];
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const prep = resizeToTensor(line);
+        const inputTensor = new ort.Tensor('float32', prep.tensor, [1, 3, prep.height, prep.width]);
+        const feeds = { [inputName]: inputTensor };
+        const outputMap = await session.run(feeds);
+        const decoded = decodeCTC(outputMap[outputName]);
+        if (decoded.text) results.push({ ...decoded, index: line.index, box: line.box });
+        self.postMessage({ type: 'infer-progress', current: i + 1, total: lines.length });
+      }
+
+      results.sort((a, b) => a.index - b.index);
+      self.postMessage({
+        type: 'result',
+        backend: actualBackend,
+        elapsedMs: performance.now() - started,
+        results
+      });
+    }
+  }
+
+  async function initAI() {
+    if (initInProgress) return;
+    initInProgress = true;
+    modelReady = false;
+    updateButtons();
+    els.statusIcon.textContent = 'AI';
+
+    try {
+      const preferWebGPU = !!navigator.gpu;
+      const mode = preferWebGPU ? 'webgpu' : 'wasm';
+      currentBackend = preferWebGPU ? 'WebGPU preferred' : 'WASM SIMD';
+      els.executionMeta.textContent = currentBackend;
+
+      const runtime = preferWebGPU ? {
+        bundle: ORT_BASE + 'ort.webgpu.bundle.min.mjs',
+        mjs: ORT_BASE + 'ort-wasm-simd-threaded.jsep.mjs',
+        wasm: ORT_BASE + 'ort-wasm-simd-threaded.jsep.wasm'
+      } : {
+        bundle: ORT_BASE + 'ort.wasm.bundle.min.mjs',
+        mjs: ORT_BASE + 'ort-wasm-simd-threaded.mjs',
+        wasm: ORT_BASE + 'ort-wasm-simd-threaded.wasm'
+      };
+
+      const assets = [
+        { key: `ort-${ORT_VERSION}-${mode}-bundle`, name: 'ONNX Runtime JS', url: runtime.bundle, weight: 0.05 },
+        { key: `ort-${ORT_VERSION}-${mode}-mjs`, name: 'ONNX Runtime loader', url: runtime.mjs, weight: 0.05 },
+        { key: `ort-${ORT_VERSION}-${mode}-wasm`, name: preferWebGPU ? 'WebGPU/WASM runtime' : 'WASM SIMD runtime', url: runtime.wasm, weight: 0.50 },
+        { key: 'ppocrv5-korean-rec-v1', name: '한국어 OCR AI 모델', url: MODEL_URL, weight: 0.37 },
+        { key: 'ppocrv5-korean-dict-v1', name: '한국어 문자 사전', url: DICT_URL, weight: 0.03 }
+      ];
+
+      let completedWeight = 0;
+      const buffers = {};
+      for (const asset of assets) {
+        setProgress(completedWeight * 88, `로컬 AI 모델을 브라우저에 적재 중...`, `${asset.name} 확인 중`);
+        buffers[asset.key] = await fetchAsset(asset.url, asset.key, (fraction, cached, bytes) => {
+          const global = (completedWeight + asset.weight * Math.max(0, Math.min(1, fraction))) * 88;
+          setProgress(global, `로컬 AI 모델을 브라우저에 적재 중... ${Math.round(global)}%`, `${asset.name} · ${cached ? 'IndexedDB 캐시 사용' : '다운로드'} ${formatBytes(bytes)}`);
+        });
+        completedWeight += asset.weight;
+      }
+
+      setProgress(90, '로컬 AI 런타임 초기화 중...', 'Web Worker에서 ONNX 그래프를 생성합니다.');
+
+      const bundleUrl = makeBlobUrl(buffers[`ort-${ORT_VERSION}-${mode}-bundle`], 'text/javascript');
+      const mjsUrl = makeBlobUrl(buffers[`ort-${ORT_VERSION}-${mode}-mjs`], 'text/javascript');
+      const wasmUrl = makeBlobUrl(buffers[`ort-${ORT_VERSION}-${mode}-wasm`], 'application/wasm');
+
+      const workerSource = `(${workerMain.toString()})();`;
+      const workerUrl = URL.createObjectURL(new Blob([workerSource], { type: 'text/javascript' }));
+      workerObjectUrls.push(workerUrl);
+      worker = new Worker(workerUrl, { type: 'module' });
+      worker.onmessage = onWorkerMessage;
+      worker.onerror = (e) => {
+        console.error(e);
+        setProgress(0, 'AI Worker 오류', e.message || 'Worker 실행 중 오류가 발생했습니다.');
+      };
+
+      const dictText = new TextDecoder('utf-8').decode(buffers['ppocrv5-korean-dict-v1']);
+      const modelBuffer = buffers['ppocrv5-korean-rec-v1'];
+      worker.postMessage({
+        type: 'init',
+        ortBundleUrl: bundleUrl,
+        ortRuntimeMjsUrl: mjsUrl,
+        ortWasmUrl: wasmUrl,
+        modelBuffer,
+        dictText,
+        preferWebGPU
+      }, [modelBuffer]);
+
+      await storageInfo();
+      try { navigator.storage?.persist?.(); } catch (_) {}
+    } catch (error) {
+      console.error(error);
+      modelReady = false;
+      els.statusIcon.textContent = '!';
+      setProgress(0, '로컬 AI 초기화 실패', error.message || String(error));
+      els.executionMeta.textContent = 'Unavailable';
+      updateButtons();
+    } finally {
+      initInProgress = false;
+    }
+  }
+
+  function onWorkerMessage(event) {
+    const msg = event.data;
+    if (msg.type === 'status') {
+      setProgress(94, '로컬 AI 런타임 초기화 중...', msg.message);
+    }
+    if (msg.type === 'ready') {
+      modelReady = true;
+      currentBackend = msg.backend;
+      els.executionMeta.textContent = msg.backend;
+      els.statusIcon.textContent = '✓';
+      setProgress(100, '로컬 AI 준비 완료', `${msg.backend} · 모델/런타임 캐시 활성 · 서버 추론 없음`);
+      els.inferMeta.textContent = `${msg.backend} 준비 완료`;
+      updateButtons();
+    }
+    if (msg.type === 'infer-progress') {
+      const p = Math.round((msg.current / Math.max(1, msg.total)) * 100);
+      els.inferMeta.textContent = `신경망 추론 ${msg.current}/${msg.total} · ${p}%`;
+      els.scanBtn.textContent = `판독 중... ${p}%`;
+    }
+    if (msg.type === 'result') {
+      const text = msg.results.map(r => r.text).join('\n').trim();
+      els.resultEditor.value = text;
+      els.inferMeta.textContent = `${msg.results.length}개 라인 · ${(msg.elapsedMs / 1000).toFixed(2)}초 · ${msg.backend}`;
+      els.scanBtn.textContent = '🤖 로컬 AI로 판독 시작';
+      els.scanBtn.disabled = false;
+      els.smartBtn.disabled = !text;
+      updateParseSummary(text);
+      toast(text ? '로컬 OCR 판독이 완료되었습니다.' : '텍스트를 찾지 못했습니다. 전처리 상태를 확인하세요.');
+    }
+    if (msg.type === 'error') {
+      console.error(msg.stack || msg.message);
+      els.scanBtn.textContent = '🤖 로컬 AI로 판독 시작';
+      els.scanBtn.disabled = false;
+      els.inferMeta.textContent = '추론 오류';
+      toast(`오류: ${msg.message}`);
+    }
+  }
+
+  async function decodeImage(file) {
+    if (!file || !file.type.startsWith('image/')) throw new Error('이미지 파일을 선택해 주세요.');
+    if ('createImageBitmap' in window) return await createImageBitmap(file);
+    const dataUrl = await new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => resolve(r.result);
+      r.onerror = reject;
+      r.readAsDataURL(file);
+    });
+    return await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = dataUrl;
+    });
+  }
+
+  async function loadImageFile(file) {
+    try {
+      const img = await decodeImage(file);
+      const iw = img.width || img.naturalWidth;
+      const ih = img.height || img.naturalHeight;
+      const scale = Math.min(1, MAX_IMAGE_SIDE / Math.max(iw, ih));
+      const w = Math.max(1, Math.round(iw * scale));
+      const h = Math.max(1, Math.round(ih * scale));
+      sourceCanvas.width = processedCanvas.width = w;
+      sourceCanvas.height = processedCanvas.height = h;
+      sourceCtx.clearRect(0, 0, w, h);
+      sourceCtx.drawImage(img, 0, 0, w, h);
+      if (img.close) img.close();
+      imageLoaded = true;
+      els.emptyCanvas.style.display = 'none';
+      preprocessImage();
+      setView('original');
+      els.inferMeta.textContent = `${w}×${h}px · 전처리 완료`;
+      updateButtons();
+      toast('영수증 이미지를 로컬 Canvas에 불러왔습니다.');
+    } catch (error) {
+      console.error(error);
+      toast(error.message || '이미지를 불러오지 못했습니다.');
+    }
+  }
+
+  function otsuThreshold(gray) {
+    const hist = new Uint32Array(256);
+    for (let i = 0; i < gray.length; i++) hist[gray[i]]++;
+    const total = gray.length;
+    let sum = 0;
+    for (let t = 0; t < 256; t++) sum += t * hist[t];
+    let sumB = 0, wB = 0, maxVar = 0, threshold = 127;
+    for (let t = 0; t < 256; t++) {
+      wB += hist[t];
+      if (!wB) continue;
+      const wF = total - wB;
+      if (!wF) break;
+      sumB += t * hist[t];
+      const mB = sumB / wB;
+      const mF = (sum - sumB) / wF;
+      const between = wB * wF * (mB - mF) * (mB - mF);
+      if (between > maxVar) { maxVar = between; threshold = t; }
+    }
+    return threshold;
+  }
+
+  function preprocessImage() {
+    if (!imageLoaded) return;
+    const w = sourceCanvas.width, h = sourceCanvas.height;
+    const src = sourceCtx.getImageData(0, 0, w, h);
+    const data = src.data;
+    const gray = new Uint8Array(w * h);
+
+    let min = 255, max = 0;
+    for (let p = 0, i = 0; i < data.length; i += 4, p++) {
+      const g = Math.round(data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114);
+      gray[p] = g;
+      if (g < min) min = g;
+      if (g > max) max = g;
+    }
+
+    const range = Math.max(1, max - min);
+    for (let i = 0; i < gray.length; i++) gray[i] = Math.max(0, Math.min(255, Math.round((gray[i] - min) * 255 / range)));
+    let threshold = otsuThreshold(gray);
+    threshold = Math.max(80, Math.min(220, threshold + 8));
+
+    const out = processedCtx.createImageData(w, h);
+    for (let p = 0, i = 0; p < gray.length; p++, i += 4) {
+      const v = gray[p] < threshold ? 0 : 255;
+      out.data[i] = out.data[i + 1] = out.data[i + 2] = v;
+      out.data[i + 3] = 255;
+    }
+    processedCtx.putImageData(out, 0, 0);
+    currentSegments = segmentTextLines(out);
+    if (currentView === 'processed') renderViewer(processedCanvas); else renderViewer(sourceCanvas);
+  }
+
+  function segmentTextLines(imageData) {
+    const { width: w, height: h, data } = imageData;
+    const rowInk = new Uint32Array(h);
+    for (let y = 0; y < h; y++) {
+      let count = 0;
+      const rowOffset = y * w * 4;
+      for (let x = 0; x < w; x++) if (data[rowOffset + x * 4] < 128) count++;
+      rowInk[y] = count;
+    }
+
+    const activeThreshold = Math.max(2, Math.floor(w * 0.006));
+    const maxGap = Math.max(2, Math.round(h * 0.0025));
+    const minHeight = Math.max(5, Math.round(h * 0.005));
+    const bands = [];
+    let start = -1, lastActive = -1;
+
+    for (let y = 0; y < h; y++) {
+      const active = rowInk[y] >= activeThreshold;
+      if (active && start < 0) { start = y; lastActive = y; }
+      else if (active) lastActive = y;
+      else if (start >= 0 && y - lastActive > maxGap) {
+        if (lastActive - start + 1 >= minHeight) bands.push([start, lastActive]);
+        start = -1; lastActive = -1;
+      }
+    }
+    if (start >= 0 && lastActive - start + 1 >= minHeight) bands.push([start, lastActive]);
+
+    const padY = Math.max(2, Math.round(h * 0.003));
+    const padX = Math.max(5, Math.round(w * 0.008));
+    const lines = [];
+    for (const [y0raw, y1raw] of bands) {
+      const y0 = Math.max(0, y0raw - padY), y1 = Math.min(h - 1, y1raw + padY);
+      let xmin = w - 1, xmax = 0, found = false;
+      for (let y = y0; y <= y1; y++) {
+        const ro = y * w * 4;
+        for (let x = 0; x < w; x++) {
+          if (data[ro + x * 4] < 128) { found = true; if (x < xmin) xmin = x; if (x > xmax) xmax = x; }
+        }
+      }
+      if (!found) continue;
+      xmin = Math.max(0, xmin - padX); xmax = Math.min(w - 1, xmax + padX);
+      const boxW = xmax - xmin + 1, boxH = y1 - y0 + 1;
+      if (boxW < 12 || boxH < 5) continue;
+      lines.push({ x: xmin, y: y0, width: boxW, height: boxH });
+    }
+
+    if (!lines.length && h > 20) lines.push({ x: 0, y: 0, width: w, height: h });
+    return lines.slice(0, 120);
+  }
+
+  function renderViewer(canvas) {
+    els.viewer.width = canvas.width;
+    els.viewer.height = canvas.height;
+    viewerCtx.clearRect(0, 0, els.viewer.width, els.viewer.height);
+    viewerCtx.drawImage(canvas, 0, 0);
+    if (currentView === 'processed' && currentSegments.length) {
+      viewerCtx.save();
+      viewerCtx.strokeStyle = 'rgba(139,92,246,.72)';
+      viewerCtx.lineWidth = Math.max(1, canvas.width / 900);
+      for (const b of currentSegments) viewerCtx.strokeRect(b.x + .5, b.y + .5, b.width - 1, b.height - 1);
+      viewerCtx.restore();
+    }
+  }
+
+  function setView(mode) {
+    currentView = mode;
+    els.viewOriginalBtn.classList.toggle('active', mode === 'original');
+    els.viewProcessedBtn.classList.toggle('active', mode === 'processed');
+    if (!imageLoaded) return;
+    renderViewer(mode === 'original' ? sourceCanvas : processedCanvas);
+  }
+
+  async function runOCR() {
+    if (!imageLoaded || !modelReady || !worker) return;
+    const base = processedCtx.getImageData(0, 0, processedCanvas.width, processedCanvas.height);
+    currentSegments = segmentTextLines(base);
+    if (!currentSegments.length) { toast('인식할 텍스트 라인을 찾지 못했습니다.'); return; }
+
+    const lines = [];
+    const transfers = [];
+    for (let i = 0; i < currentSegments.length; i++) {
+      const b = currentSegments[i];
+      const crop = processedCtx.getImageData(b.x, b.y, b.width, b.height);
+      const buffer = crop.data.buffer;
+      lines.push({ index: i, width: b.width, height: b.height, data: buffer, box: b });
+      transfers.push(buffer);
+    }
+
+    els.scanBtn.disabled = true;
+    els.scanBtn.textContent = '판독 중... 0%';
+    els.inferMeta.textContent = `텍스트 라인 ${lines.length}개 · ${currentBackend}`;
+    els.resultEditor.value = '';
+    updateButtons();
+    worker.postMessage({ type: 'infer', lines }, transfers);
+  }
+
+  function cleanReceiptText(raw) {
+    const allowed = /[^0-9A-Za-z가-힣ㄱ-ㅎㅏ-ㅣ₩$€¥%.,:+\-_/()\[\]@#&*'"\s]/g;
+    let text = raw.normalize('NFKC').replace(allowed, ' ');
+    const lines = text.split(/\n+/).map(line => line.replace(/[ \t]+/g, ' ').trim()).filter(Boolean);
+
+    const dateRegex = /(?:20\d{2}|19\d{2})\s*(?:[.\-/년])\s*\d{1,2}\s*(?:[.\-/월])\s*\d{1,2}\s*(?:일)?|\b\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}\b/g;
+    const amountRegex = /(?:₩\s*)?\d{1,3}(?:,\d{3})+(?:\s*원)?|(?:₩\s*)?\d{3,}(?:\s*원)|\b\d+\s*원\b/g;
+
+    const dates = [];
+    const amounts = [];
+    const cleaned = [];
+
+    for (const line of lines) {
+      const ds = line.match(dateRegex) || [];
+      const as = line.match(amountRegex) || [];
+      ds.forEach(v => dates.push(v.trim()));
+      as.forEach(v => amounts.push(v.trim()));
+
+      let normalized = line
+        .replace(/\s*([,:])\s*/g, '$1 ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+
+      const lastAmount = [...normalized.matchAll(amountRegex)].pop();
+      if (lastAmount && lastAmount.index > 0) {
+        const left = normalized.slice(0, lastAmount.index).trim();
+        const right = normalized.slice(lastAmount.index).trim();
+        if (left && right) normalized = `${left.padEnd(Math.min(38, Math.max(left.length + 4, 22)), ' ')}${right}`;
+      }
+      cleaned.push(normalized);
+    }
+
+    const uniqueDates = [...new Set(dates)];
+    const uniqueAmounts = [...new Set(amounts)];
+    return { text: cleaned.join('\n'), dates: uniqueDates, amounts: uniqueAmounts };
+  }
+
+  function updateParseSummary(text) {
+    const parsed = cleanReceiptText(text || '');
+    els.dateSummary.textContent = parsed.dates.length ? parsed.dates.slice(0, 5).join('\n') : '-';
+    els.amountSummary.textContent = parsed.amounts.length ? parsed.amounts.slice(0, 8).join('\n') : '-';
+    return parsed;
+  }
+
+  function handleFiles(files) {
+    const file = [...files].find(f => f.type?.startsWith('image/'));
+    if (file) loadImageFile(file); else toast('이미지 파일이 없습니다.');
+  }
+
+  els.fileInput.addEventListener('change', e => handleFiles(e.target.files));
+  els.uploadZone.addEventListener('dragover', e => { e.preventDefault(); els.uploadZone.classList.add('dragging'); });
+  els.uploadZone.addEventListener('dragleave', () => els.uploadZone.classList.remove('dragging'));
+  els.uploadZone.addEventListener('drop', e => { e.preventDefault(); els.uploadZone.classList.remove('dragging'); handleFiles(e.dataTransfer.files); });
+  window.addEventListener('paste', e => {
+    const items = [...(e.clipboardData?.items || [])];
+    const imageItem = items.find(item => item.type.startsWith('image/'));
+    if (imageItem) { e.preventDefault(); loadImageFile(imageItem.getAsFile()); }
+  });
+
+  els.viewOriginalBtn.addEventListener('click', () => setView('original'));
+  els.viewProcessedBtn.addEventListener('click', () => setView('processed'));
+  els.scanBtn.addEventListener('click', runOCR);
+  els.reprocessBtn.addEventListener('click', () => { preprocessImage(); setView('processed'); toast('전처리를 다시 적용했습니다.'); });
+  els.resultEditor.addEventListener('input', () => { updateButtons(); updateParseSummary(els.resultEditor.value); });
+
+  els.smartBtn.addEventListener('click', () => {
+    const parsed = cleanReceiptText(els.resultEditor.value);
+    els.resultEditor.value = parsed.text;
+    els.dateSummary.textContent = parsed.dates.length ? parsed.dates.slice(0, 5).join('\n') : '-';
+    els.amountSummary.textContent = parsed.amounts.length ? parsed.amounts.slice(0, 8).join('\n') : '-';
+    updateButtons();
+    toast('영수증 텍스트를 정리했습니다.');
+  });
+
+  els.copyBtn.addEventListener('click', async () => {
+    const text = els.resultEditor.value;
+    if (!text) return toast('복사할 결과가 없습니다.');
+    try { await navigator.clipboard.writeText(text); toast('OCR 결과를 복사했습니다.'); }
+    catch (_) { els.resultEditor.select(); document.execCommand('copy'); toast('OCR 결과를 복사했습니다.'); }
+  });
+
+  els.clearTextBtn.addEventListener('click', () => {
+    els.resultEditor.value = '';
+    els.dateSummary.textContent = '-';
+    els.amountSummary.textContent = '-';
+    updateButtons();
+  });
+
+  els.clearCacheBtn.addEventListener('click', async () => {
+    try {
+      if (worker) { worker.terminate(); worker = null; }
+      await clearDb();
+      modelReady = false;
+      updateButtons();
+      setProgress(0, 'AI 캐시가 초기화되었습니다.', '다시 모델을 다운로드합니다.');
+      await initAI();
+    } catch (error) { toast(error.message || '캐시 초기화에 실패했습니다.'); }
+  });
+
+  window.addEventListener('online', () => {
+    if (!modelReady && !initInProgress) initAI();
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if (worker) worker.terminate();
+    for (const url of workerObjectUrls) URL.revokeObjectURL(url);
+  });
+
+  updateButtons();
+  storageInfo();
+  initAI();
+})();
+</script>
+</body>
+</html>

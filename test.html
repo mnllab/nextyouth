@@ -449,7 +449,7 @@
       const src = new Uint8ClampedArray(line.data);
       const srcW = line.width;
       const srcH = line.height;
-      const dstH = 32;
+      const dstH = 48;
       let dstW = Math.round(dstH * (srcW / Math.max(1, srcH)));
       dstW = Math.max(32, Math.min(960, Math.ceil(dstW / 4) * 4));
 
